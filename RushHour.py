@@ -5,9 +5,7 @@ import numpy
 
 def main():
 
-// hoi ik ben roman
-Hoi roman!
-Ik ben Eloy
+    print("hallo")
 
 if __name__ == "__main__":
     main()
