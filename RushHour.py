@@ -3,8 +3,7 @@ import numpy
 
 def main():
 
-aanpassing van RushHour.py
-
+// hoi ik ben irisss
 
 if __name__ == "__main__":
     main()
