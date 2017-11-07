@@ -1,6 +1,8 @@
 import sys
 import numpy
 
+# hoi ik ben roman
+
 def main():
 
 
