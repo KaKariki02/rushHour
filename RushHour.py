@@ -1,11 +1,18 @@
 import sys
-import numpy
+import numpy as np
 
-# hoi ik ben roman
+class gameboard(object):
+    def __init__(self):
+        self.board = [[0 for x in range(6)] for y in range(6)]
 
-def main():
+    def printboard(self):
+        print(np.matrix(self.board))
 
-// hoi ik ben roman
+    def  putcar(self):
+        self.board[1][1] = "A"
+        self.board[2][1] = "A"
 
-if __name__ == "__main__":
-    main()
+board = gameboard()
+board.printboard()
+board.putcar()
+board.printboard()
