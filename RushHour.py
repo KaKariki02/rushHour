@@ -28,6 +28,8 @@ def main():
     def hasWon():
         if red == grid_x[2][4:5]:
             print("you have won")
+        else :
+            print("try some other moves")
 
     grid_x = [["x" for x in range(6)]for y in range(6)]
     # for x in range(height):
@@ -40,10 +42,8 @@ def main():
     RED()
 
     moveLeft()
-    moveLeft()
-    moveLeft()
-    print(grid_x)
-    hasWon()
+    print(grid_x[a][b::b])
+    # hasWon()
 
 
 
