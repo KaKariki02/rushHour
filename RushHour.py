@@ -37,12 +37,12 @@ class Gameboard():
                 for i in range(vehicle.length):
                     self.board[int(vehicle.y)+i][int(vehicle.x)] = vehicle.id
 
-    def checkformoves(self):
+    ##def checkformoves(self):
 
 
     def uploadBoard(self):
         self.vehicles = []
-        with open('game1length2.csv', 'r') as csvboard:
+        with open('Boards/game1length2.csv', 'r') as csvboard:
             boardreader = csv.DictReader(csvboard)
             for row in boardreader:
                 self.vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation']))
