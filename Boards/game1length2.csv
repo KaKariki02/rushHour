@@ -1,0 +1,10 @@
+id,x,y,orientation
+#,3,2,H
+A,3,0,H
+B,4,3,H
+C,1,4,H
+D,4,5,H
+E,0,4,V
+O,2,1,V
+P,5,0,V
+Q,3,3,V
