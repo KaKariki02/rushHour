@@ -4,19 +4,16 @@ import sys
 import numpy as np
 import csv
 
-CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
-TRUCK_IDS = ['O','P','Q','R','S','T','U']
+# CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
+# TRUCK_IDS = ['O','P','Q','R','S','T','U']
 
 class Vehicle():
-    def __init__(self, id, x, y, orientation):
+    def __init__(self, id, x, y, orientation, length):
         self.id = id
         self.x = x
         self.y = y
         self.orientation = orientation
-        if id in CAR_IDS:
-            self.length = 2
-        if id in TRUCK_IDS:
-            self.length = 3
+        self.length = int(length)
 class Gameboard():
 #GRID = 6
 
@@ -49,14 +46,14 @@ class Gameboard():
                 if x_position != 0:
                     if self.board[y_position][x_position - 1] == '.':
                         newVehicles = self.vehicles.copy()
-                        newVehicle = Vehicle(vehicle.id, x_position - 1, y_position, vehicle.orientation)
+                        newVehicle = Vehicle(vehicle.id, x_position - 1, y_position, vehicle.orientation, vehicle.length)
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
                 if (x_position + vehicle.length) != 5:
                     if self.board[y_position][x_position + (vehicle.length - 1)] == '.':
                         newVehicles = self.vehicles.copy()
-                        newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation)
+                        newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation, vehicle.length)
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
@@ -64,14 +61,14 @@ class Gameboard():
                 if y_position != 0:
                     if self.board[y_position - 1][x_position] == '.':
                         newVehicles = self.vehicles.copy()
-                        newVehicle = Vehicle(vehicle.id, x_position, y_position - 1, vehicle.orientation)
+                        newVehicle = Vehicle(vehicle.id, x_position, y_position - 1, vehicle.orientation, vehicle.length)
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
                 if y_position + (vehicle.length - 1) != 5:
                     if self.board[y_position + vehicle.length][x_position] == '.':
                         newVehicles = self.vehicles.copy()
-                        newVehicle = Vehicle(vehicle.id, x_position, y_position + 1, vehicle.orientation)
+                        newVehicle = Vehicle(vehicle.id, x_position, y_position + 1, vehicle.orientation, vehicle.length)
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
@@ -80,10 +77,10 @@ class Gameboard():
 
     def uploadBoard(self):
         self.vehicles = []
-        with open('Boards/game1length2.csv', 'r') as csvboard:
+        with open('Boards/game3.csv', 'r') as csvboard:
             boardreader = csv.DictReader(csvboard)
             for row in boardreader:
-                self.vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation']))
+                self.vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
 
     def printPossibilities(self):
         for board in Gameboard.checkformoves(self):
