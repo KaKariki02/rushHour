@@ -17,11 +17,12 @@ class Vehicle():
 class Gameboard():
 #GRID = 6
 
-    def __init__(self):
+    def __init__(self, vehicles):
         width, height = 6, 6;
         #Matrix = [["X" for x in range(width)] for y in range(height)]
 
         self.board = [["." for x in range(width)] for y in range(height)]
+        self.vehicles = vehicles
 
     def printboard(self):
         print("New board:")
@@ -75,12 +76,14 @@ class Gameboard():
 
         return possibleBoards
 
-    def uploadBoard(self):
-        self.vehicles = []
-        with open('Boards/game3.csv', 'r') as csvboard:
-            boardreader = csv.DictReader(csvboard)
-            for row in boardreader:
-                self.vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
+    def hasSolved(self):
+        for vehicle in self.vehicles:
+            if vehicle.id == '#' and vehicle.x == 4 and vehicle.y == 2 and vehicle.orientation == "H":
+                return True
+
+        return false
+
+
 
     def printPossibilities(self):
         for board in Gameboard.checkformoves(self):
@@ -88,10 +91,20 @@ class Gameboard():
             for vehicle in board:
                 print(str(vehicle.id) + str(vehicle.x) + str(vehicle.y) + str(vehicle.orientation))
 
+def uploadBoard():
+    vehicles = []
+    with open('Boards/game3.csv', 'r') as csvboard:
+        boardreader = csv.DictReader(csvboard)
+        for row in boardreader:
+            vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
 
-p = Gameboard()
-p.printboard()
-p.uploadBoard()
+    return vehicles
+
+p = Gameboard(uploadBoard())
+
+
+
+# p = Gameboard()
 p.setupBoard()
 p.printboard()
 p.printPossibilities()
