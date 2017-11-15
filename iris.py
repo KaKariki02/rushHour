@@ -23,12 +23,6 @@ class Gameboard():
 
         self.board = [["." for x in range(width)] for y in range(height)]
         self.vehicles = vehicles
-
-    def printboard(self):
-        print("New board:")
-        print('\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board]))
-
-    def setupBoard(self):
         for vehicle in self.vehicles:
             if vehicle.orientation == 'H':
                 for i in range(vehicle.length):
@@ -36,6 +30,10 @@ class Gameboard():
             if vehicle.orientation == 'V':
                 for i in range(vehicle.length):
                     self.board[int(vehicle.y)+i][int(vehicle.x)] = vehicle.id
+
+    def printboard(self):
+        print("New board:")
+        print('\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board]))
 
     def checkformoves(self):
         possibleBoards = []
@@ -78,10 +76,10 @@ class Gameboard():
 
     def hasSolved(self):
         for vehicle in self.vehicles:
-            if vehicle.id == '#' and vehicle.x == 4 and vehicle.y == 2 and vehicle.orientation == "H":
+            if vehicle.id == '#' and vehicle.x == '4' and vehicle.y == '2' and vehicle.orientation == "H":
                 return True
 
-        return false
+        return False
 
 
 
@@ -93,7 +91,7 @@ class Gameboard():
 
 def uploadBoard():
     vehicles = []
-    with open('Boards/game3.csv', 'r') as csvboard:
+    with open('Boards/GameWon.csv', 'r') as csvboard:
         boardreader = csv.DictReader(csvboard)
         for row in boardreader:
             vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
@@ -105,6 +103,8 @@ p = Gameboard(uploadBoard())
 
 
 # p = Gameboard()
-p.setupBoard()
 p.printboard()
-p.printPossibilities()
+if p.hasSolved():
+    print("Board is solved")
+else:
+    print("Board is not solved")
