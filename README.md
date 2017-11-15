@@ -13,7 +13,7 @@ following steps are implemented:
 -The programme prints a list of possible moves
 
 We are working on:
--A "win function"__
+-A "win function"  
 -Capturing the lists of possible moves
 -Print the new possible moves on a board
 
