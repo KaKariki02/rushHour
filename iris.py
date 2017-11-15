@@ -48,20 +48,20 @@ class Gameboard():
             if vehicle.orientation == 'H':
                 if x_position != 0:
                     if self.board[y_position][x_position - 1] == '.':
-                        vehicle.x = vehicle.x - 1
+                        vehicle.x = int(vehicle.x) - 1
                         self.movedVehicles.append(vehicle)
                 if (x_position + vehicle.length) != 5:
                     if self.board[y_position][x_position + (vehicle.length - 1)] == '.':
-                        vehicle.x += 1
+                        vehicle.x = int(vehicle.x) + 1
                         self.movedVehicles.append(vehicle)
             if vehicle.orientation == 'V':
                 if y_position != 0:
                     if self.board[y_position - 1][x_position] == '.':
-                        vehicle.y -= 1
+                        vehicle.y = int(vehicle.y) - 1
                         self.movedVehicles.append(vehicle)
-                if y_position + (vehicle.length - 1) != 5
+                if y_position + (vehicle.length - 1) != 5:
                     if self.board[y_position + vehicle.length][x_position] == '.':
-                        vehicle.y += 1
+                        vehicle.y = int(vehicle.y) + 1
                         self.movedVehicles.append(vehicle)
 
 
