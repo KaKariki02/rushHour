@@ -40,7 +40,7 @@ class Gameboard():
                     self.board[int(vehicle.y)+i][int(vehicle.x)] = vehicle.id
 
     def checkformoves(self):
-        self.movedVehicles = []
+        possibleBoards = []
         for vehicle in self.vehicles:
             x_position = int(vehicle.x)
             y_position = int(vehicle.y)
@@ -48,22 +48,35 @@ class Gameboard():
             if vehicle.orientation == 'H':
                 if x_position != 0:
                     if self.board[y_position][x_position - 1] == '.':
-                        vehicle.x = int(vehicle.x) - 1
-                        self.movedVehicles.append(vehicle)
+                        newVehicles = self.vehicles.copy()
+                        newVehicle = Vehicle(vehicle.id, x_position - 1, y_position, vehicle.orientation)
+                        newVehicles.remove(vehicle)
+                        newVehicles.append(newVehicle)
+                        possibleBoards.append(newVehicles)
                 if (x_position + vehicle.length) != 5:
                     if self.board[y_position][x_position + (vehicle.length - 1)] == '.':
-                        vehicle.x = int(vehicle.x) + 1
-                        self.movedVehicles.append(vehicle)
+                        newVehicles = self.vehicles.copy()
+                        newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation)
+                        newVehicles.remove(vehicle)
+                        newVehicles.append(newVehicle)
+                        possibleBoards.append(newVehicles)
             if vehicle.orientation == 'V':
                 if y_position != 0:
                     if self.board[y_position - 1][x_position] == '.':
-                        vehicle.y = int(vehicle.y) - 1
-                        self.movedVehicles.append(vehicle)
+                        newVehicles = self.vehicles.copy()
+                        newVehicle = Vehicle(vehicle.id, x_position, y_position - 1, vehicle.orientation)
+                        newVehicles.remove(vehicle)
+                        newVehicles.append(newVehicle)
+                        possibleBoards.append(newVehicles)
                 if y_position + (vehicle.length - 1) != 5:
                     if self.board[y_position + vehicle.length][x_position] == '.':
-                        vehicle.y = int(vehicle.y) + 1
-                        self.movedVehicles.append(vehicle)
+                        newVehicles = self.vehicles.copy()
+                        newVehicle = Vehicle(vehicle.id, x_position, y_position + 1, vehicle.orientation)
+                        newVehicles.remove(vehicle)
+                        newVehicles.append(newVehicle)
+                        possibleBoards.append(newVehicles)
 
+        return possibleBoards
 
     def uploadBoard(self):
         self.vehicles = []
@@ -72,13 +85,16 @@ class Gameboard():
             for row in boardreader:
                 self.vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation']))
 
+    def printPossibilities(self):
+        for board in Gameboard.checkformoves(self):
+            print("new board:")
+            for vehicle in board:
+                print(str(vehicle.id) + str(vehicle.x) + str(vehicle.y) + str(vehicle.orientation))
 
 
 p = Gameboard()
 p.printboard()
 p.uploadBoard()
 p.setupBoard()
-print(p.vehicles)
 p.printboard()
-p.checkformoves()
-print(p.movedVehicles)
+p.printPossibilities()
