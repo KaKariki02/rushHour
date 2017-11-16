@@ -11,6 +11,7 @@ iris.py is now the leading file
 -Printing of a empty board  
 -Printing of a start board  
 -The programme prints a list of possible moves    
+-Implement a random board solver: `randomSolver`
 
 ## Currently:  
 -A "win function"  
@@ -19,4 +20,5 @@ iris.py is now the leading file
 
 ## Todo:  
 -initial implementation of BFS  
--think about the size of our statespace  
+-think about the size of our statespace
+-think about how we cast variables
