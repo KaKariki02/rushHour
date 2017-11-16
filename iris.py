@@ -3,6 +3,8 @@
 import sys
 import numpy as np
 import csv
+import random
+import copy
 
 # CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
 # TRUCK_IDS = ['O','P','Q','R','S','T','U']
@@ -49,8 +51,8 @@ class Gameboard():
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
-                if (x_position + vehicle.length) != 5:
-                    if self.board[y_position][x_position + (vehicle.length - 1)] == '.':
+                if (x_position + vehicle.length - 1) != 5:
+                    if self.board[y_position][x_position + (vehicle.length)] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation, vehicle.length)
                         newVehicles.remove(vehicle)
@@ -76,7 +78,7 @@ class Gameboard():
 
     def hasSolved(self):
         for vehicle in self.vehicles:
-            if vehicle.id == '#' and vehicle.x == '4' and vehicle.y == '2' and vehicle.orientation == "H":
+            if vehicle.id == '#' and vehicle.x == 4 and vehicle.y == 2 and vehicle.orientation == "H":
                 return True
 
         return False
@@ -85,26 +87,28 @@ class Gameboard():
 
     def printPossibilities(self):
         for board in Gameboard.checkformoves(self):
-            print("new board:")
             for vehicle in board:
-                print(str(vehicle.id) + str(vehicle.x) + str(vehicle.y) + str(vehicle.orientation))
+                print(vehicle.id, vehicle.x, vehicle.y, vehicle.orientation)
+
 
 def uploadBoard():
     vehicles = []
-    with open('Boards/GameWon.csv', 'r') as csvboard:
+    with open('Boards/game3.csv', 'r') as csvboard:
         boardreader = csv.DictReader(csvboard)
         for row in boardreader:
             vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
 
     return vehicles
 
+def randomSolver(gameboard):
+    i=0
+    newgameboard = copy.copy(gameboard)
+    while True:
+        newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
+        print("Try: " + str(i))
+        i += 1
+        if newgameboard.hasSolved():
+            break
+    print("ping pong ching chong, you solved tha board")
 p = Gameboard(uploadBoard())
-
-
-
-# p = Gameboard()
-p.printboard()
-if p.hasSolved():
-    print("Board is solved")
-else:
-    print("Board is not solved")
+randomSolver(p)
