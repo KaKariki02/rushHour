@@ -102,7 +102,7 @@ def uploadBoard():
     return vehicles
 
 def randomSolver(gameboard):
-<<<<<<< HEAD
+
     runtimes = open('runtime.csv', 'w')
     runwriter = csv.writer(runtimes)
     for i in range(5000):
@@ -114,44 +114,35 @@ def randomSolver(gameboard):
             if newgameboard.hasSolved():
                 runwriter.writerow([time.time() - start])
                 break
-=======
-    i=0
-    newgameboard = copy.copy(gameboard)
-    while True:
-        newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-        print("Try: " + str(i))
-        i += 1
-        if newgameboard.hasSolved():
-            break
-    print("ping pong ching chong, you solved tha board")
 
-def breadth_First_Search(gameboard):
-    boardsQueue = queue.Queue
-    visited = []
 
-    boardsQueue.put(gameboard)
-    visited.append(gameboard)
 
-    while boardsQueue is != 0 :
-        new_board = boardsQueue.get
-        childList = checkformoves(new_board)
-
-        for child in childList:
-            maak child_board
-
-            if child_board is not in visited:
-
-                if child_board.hasSolved:
-                    print("solved")
-                    break
-                else
-                    boardsQueue.put(child_board)
-                    visited.append(child_board)
+# def breadth_First_Search(gameboard):
+#     boardsQueue = queue.Queue
+#     visited = []
+#
+#     boardsQueue.put(gameboard)
+#     visited.append(gameboard)
+#
+#     while boardsQueue is != 0 :
+#         new_board = boardsQueue.get
+#         childList = checkformoves(new_board)
+#
+#         for child in childList:
+#             maak child_board
+#
+#             if child_board is not in visited:
+#
+#                 if child_board.hasSolved:
+#                     print("solved")
+#                     break
+#                 else
+#                     boardsQueue.put(child_board)
+#                     visited.append(child_board)
 
 
 
 
->>>>>>> 888a269e933a078301182fd4700ccb470e3df369
 
 
 
