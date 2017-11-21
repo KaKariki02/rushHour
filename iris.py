@@ -5,6 +5,7 @@ import numpy as np
 import csv
 import random
 import copy
+import time
 
 # CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
 # TRUCK_IDS = ['O','P','Q','R','S','T','U']
@@ -93,7 +94,7 @@ class Gameboard():
 
 def uploadBoard():
     vehicles = []
-    with open('Boards/game3.csv', 'r') as csvboard:
+    with open('Boards/game1.csv', 'r') as csvboard:
         boardreader = csv.DictReader(csvboard)
         for row in boardreader:
             vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
@@ -101,14 +102,21 @@ def uploadBoard():
     return vehicles
 
 def randomSolver(gameboard):
-    i=0
-    newgameboard = copy.copy(gameboard)
-    while True:
-        newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-        print("Try: " + str(i))
-        i += 1
-        if newgameboard.hasSolved():
-            break
-    print("ping pong ching chong, you solved tha board")
+    runtimes = open('runtime.csv', 'w')
+    runwriter = csv.writer(runtimes)
+    for i in range(5000):
+        start = time.time()
+        print (i)
+        newgameboard = copy.copy(gameboard)
+        while True:
+            newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
+            if newgameboard.hasSolved():
+                runwriter.writerow([time.time() - start])
+                break
+
+
+
 p = Gameboard(uploadBoard())
+p.printboard()
+input(" ")
 randomSolver(p)
