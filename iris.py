@@ -110,5 +110,35 @@ def randomSolver(gameboard):
         if newgameboard.hasSolved():
             break
     print("ping pong ching chong, you solved tha board")
+
+def breadth_First_Search(gameboard):
+    boardsQueue = queue.Queue
+    visited = []
+
+    boardsQueue.put(gameboard)
+    visited.append(gameboard)
+
+    while boardsQueue is != 0 :
+        new_board = boardsQueue.get
+        childList = checkformoves(new_board)
+
+        for child in childList:
+            maak child_board
+
+            if child_board is not in visited:
+
+                if child_board.hasSolved:
+                    print("solved")
+                    break
+                else
+                    boardsQueue.put(child_board)
+                    visited.append(child_board)
+
+
+
+
+
+
+
 p = Gameboard(uploadBoard())
 randomSolver(p)
