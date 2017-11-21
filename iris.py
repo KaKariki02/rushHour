@@ -6,6 +6,7 @@ import csv
 import random
 import copy
 import time
+import queue
 
 # CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
 # TRUCK_IDS = ['O','P','Q','R','S','T','U']
@@ -17,6 +18,10 @@ class Vehicle():
         self.y = y
         self.orientation = orientation
         self.length = int(length)
+
+    def __repr__(self):
+        return True
+
 class Gameboard():
 #GRID = 6
 
@@ -34,9 +39,19 @@ class Gameboard():
                 for i in range(vehicle.length):
                     self.board[int(vehicle.y)+i][int(vehicle.x)] = vehicle.id
 
+    def __hash__(self):
+        return hash(self.__repr__())
+
+    def __repr__(self):
+        self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])
+        return self.printableboard
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
     def printboard(self):
-        print("New board:")
-        print('\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board]))
+        self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])
+        return self.printableboard
 
     def checkformoves(self):
         possibleBoards = []
@@ -92,9 +107,9 @@ class Gameboard():
                 print(vehicle.id, vehicle.x, vehicle.y, vehicle.orientation)
 
 
-def uploadBoard():
+def uploadBoard(filepath):
     vehicles = []
-    with open('Boards/game1.csv', 'r') as csvboard:
+    with open(filepath, 'r') as csvboard:
         boardreader = csv.DictReader(csvboard)
         for row in boardreader:
             vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
@@ -117,28 +132,25 @@ def randomSolver(gameboard):
 
 
 
-# def breadth_First_Search(gameboard):
-#     boardsQueue = queue.Queue
-#     visited = []
-#
-#     boardsQueue.put(gameboard)
-#     visited.append(gameboard)
-#
-#     while boardsQueue is != 0 :
-#         new_board = boardsQueue.get
-#         childList = checkformoves(new_board)
-#
-#         for child in childList:
-#             maak child_board
-#
-#             if child_board is not in visited:
-#
-#                 if child_board.hasSolved:
-#                     print("solved")
-#                     break
-#                 else
-#                     boardsQueue.put(child_board)
-#                     visited.append(child_board)
+def breadth_First_Search(gameboard):
+    newgameboard = copy.copy(gameboard)
+    boardsQueue = queue.Queue()
+    visited = set()
+    boardsQueue.put(newgameboard)
+    visited.add(gameboard)
+    while boardsQueue.qsize() != 0 :
+        new_board = boardsQueue.get()
+        childList = new_board.checkformoves()
+
+        for child in childList:
+            newgameboard = Gameboard(child)
+            if newgameboard.hasSolved():
+                return  print(newgameboard)
+            if newgameboard in visited:
+                continue
+            else:
+                boardsQueue.put(newgameboard)
+                visited.add(newgameboard)
 
 
 
@@ -146,7 +158,6 @@ def randomSolver(gameboard):
 
 
 
-p = Gameboard(uploadBoard())
-p.printboard()
-input(" ")
-randomSolver(p)
+p = Gameboard(uploadBoard("Boards/game2.csv"))
+q = Gameboard(uploadBoard("Boards/game1.csv"))
+print(p.__eq__(p))
