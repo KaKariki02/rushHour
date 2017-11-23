@@ -2,7 +2,7 @@
 
 # Update RushHour 23rd of november  
 
-We have created three files. One with the algorithms, one with the classes and one main file.bla  
+We have created three files. Algorithms.py contains the algorithms, RushClass.py contains the classes and RushHour is the main file.  
 
 ## Done:  
 -Initialisation of a board with a grid system  
@@ -13,11 +13,10 @@ We have created three files. One with the algorithms, one with the classes and o
 -Implement a random board solver: `randomSolver`  
 -Capturing the lists of possible moves  
 -A "win function"  
--Implement a breadth first search   
+-Implement a breadth first search  
+-Comparison between a breadth first search with and without an archive
 
 ## Todo:  
--think about the size of our statespace
--think about how we cast variables  
 -backtracing the solution  
 -counting number of steps to solution  
 -pruning  
