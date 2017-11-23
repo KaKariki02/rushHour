@@ -1,16 +1,3 @@
-#move check
-
-import sys
-import numpy as np
-import csv
-import random
-import copy
-import time
-import queue
-
-# CAR_IDS = ['#','A', 'B', 'C', 'D', 'E']
-# TRUCK_IDS = ['O','P','Q','R','S','T','U']
-
 class Vehicle():
     def __init__(self, id, x, y, orientation, length):
         self.id = id
@@ -27,7 +14,6 @@ class Gameboard():
 
     def __init__(self, vehicles):
         width, height = 6, 6;
-        #Matrix = [["X" for x in range(width)] for y in range(height)]
 
         self.board = [["." for x in range(width)] for y in range(height)]
         self.vehicles = vehicles
@@ -95,60 +81,7 @@ class Gameboard():
 
         return False
 
-
-
     def printPossibilities(self):
         for board in Gameboard.checkformoves(self):
             for vehicle in board:
                 print(vehicle.id, vehicle.x, vehicle.y, vehicle.orientation)
-
-
-def uploadBoard(filepath):
-    vehicles = []
-    with open(filepath, 'r') as csvboard:
-        boardreader = csv.DictReader(csvboard)
-        for row in boardreader:
-            vehicles.append(Vehicle(row['id'], row['x'], row['y'], row['orientation'], row['length']))
-
-    return vehicles
-
-def randomSolver(gameboard):
-
-    runtimes = open('runtime.csv', 'w')
-    runwriter = csv.writer(runtimes)
-    for i in range(5000):
-        print (i)
-        newgameboard = copy.copy(gameboard)
-        j=0
-        while True:
-            newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-            j += 1
-            if newgameboard.hasSolved():
-                runwriter.writerow([j])
-                break
-
-
-
-def breadth_First_Search(gameboard):
-    newgameboard = copy.copy(gameboard)
-    boardsQueue = queue.Queue()
-    visited = set()
-    boardsQueue.put(newgameboard)
-    visited.add(newgameboard)
-    while boardsQueue.qsize() != 0 :
-        new_board = boardsQueue.get()
-        childList = new_board.checkformoves()
-
-        for child in childList:
-            newgameboard = Gameboard(child)
-            if newgameboard.hasSolved():
-                return  print(newgameboard)
-            if newgameboard in visited:
-                continue
-            else:
-                boardsQueue.put(newgameboard)
-                visited.add(newgameboard)
-
-
-p = Gameboard(uploadBoard("Boards/game2.csv"))
-randomSolver(p)
