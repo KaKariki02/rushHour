@@ -137,7 +137,7 @@ def breadth_First_Search(gameboard):
     boardsQueue = queue.Queue()
     visited = set()
     boardsQueue.put(newgameboard)
-    visited.add(gameboard)
+    visited.add(newgameboard)
     while boardsQueue.qsize() != 0 :
         new_board = boardsQueue.get()
         childList = new_board.checkformoves()
