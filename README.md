@@ -1,9 +1,8 @@
 ![alt text](http://heuristieken.nl/wiki/images/d/df/Rushhour.jpg)
 
-# Update RushHour 15th of november  
+# Update RushHour 23rd of november  
 
-We have deleted the old RushHour file due to many conflicts within github.  
-iris.py is now the leading file  
+We have created three files. One with the algorithms, one with the classes and one main file.bla  
 
 ## Done:  
 -Initialisation of a board with a grid system  
@@ -11,14 +10,19 @@ iris.py is now the leading file
 -Printing of a empty board  
 -Printing of a start board  
 -The programme prints a list of possible moves    
--Implement a random board solver: `randomSolver`
-
-## Currently:  
--A "win function"  
+-Implement a random board solver: `randomSolver`  
 -Capturing the lists of possible moves  
--Print the new possible moves on a board  
+-A "win function"  
+-Implement a breadth first search   
 
 ## Todo:  
--initial implementation of BFS  
 -think about the size of our statespace
--think about how we cast variables
+-think about how we cast variables  
+-backtracing the solution  
+-counting number of steps to solution  
+-pruning  
+-visualization of the board  
+-make our code applicable for other board sizes  
+-Comments in code  
+-scorefunction boards/ priority queue  
+-gitignore  
