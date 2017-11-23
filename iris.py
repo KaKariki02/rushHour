@@ -47,11 +47,7 @@ class Gameboard():
         return self.printableboard
 
     def __eq__(self, other):
-        return hash(self) == hash(other)
-
-    def printboard(self):
-        self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])
-        return self.printableboard
+        return repr(self) == repr(other)
 
     def checkformoves(self):
         possibleBoards = []
@@ -121,13 +117,14 @@ def randomSolver(gameboard):
     runtimes = open('runtime.csv', 'w')
     runwriter = csv.writer(runtimes)
     for i in range(5000):
-        start = time.time()
         print (i)
         newgameboard = copy.copy(gameboard)
+        j=0
         while True:
             newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
+            j += 1
             if newgameboard.hasSolved():
-                runwriter.writerow([time.time() - start])
+                runwriter.writerow([j])
                 break
 
 
@@ -153,11 +150,5 @@ def breadth_First_Search(gameboard):
                 visited.add(newgameboard)
 
 
-
-
-
-
-
 p = Gameboard(uploadBoard("Boards/game2.csv"))
-q = Gameboard(uploadBoard("Boards/game1.csv"))
-print(p.__eq__(p))
+randomSolver(p)
