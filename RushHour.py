@@ -22,4 +22,4 @@ def uploadBoard(filepath):
 
 if __name__ == "__main__":
     p = Gameboard(uploadBoard("Boards/game2.csv"))
-    randomSolver(p)
+    breadth_First_Search(p)
