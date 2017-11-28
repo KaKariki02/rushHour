@@ -1,3 +1,6 @@
+import dimensions
+from math import ceil
+
 class Vehicle():
     def __init__(self, id, x, y, orientation, length):
         self.id = id
@@ -13,9 +16,11 @@ class Gameboard():
 #GRID = 6
 
     def __init__(self, vehicles):
-        width, height = 6, 6;
 
-        self.board = [["." for x in range(width)] for y in range(height)]
+        self.width = dimensions.width
+        self.height = dimensions.height
+
+        self.board = [["." for x in range(self.width)] for y in range(self.height)]
         self.vehicles = vehicles
         for vehicle in self.vehicles:
             if vehicle.orientation == 'H':
@@ -33,7 +38,7 @@ class Gameboard():
         return self.printableboard
 
     def __eq__(self, other):
-        return repr(self) == repr(other)
+        return hash(self) == hash(other)
 
     def checkformoves(self):
         possibleBoards = []
@@ -49,7 +54,7 @@ class Gameboard():
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
-                if (x_position + vehicle.length - 1) != 5:
+                if (x_position + vehicle.length - 1) != self.width - 1:
                     if self.board[y_position][x_position + (vehicle.length)] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation, vehicle.length)
@@ -64,7 +69,7 @@ class Gameboard():
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
                         possibleBoards.append(newVehicles)
-                if y_position + (vehicle.length - 1) != 5:
+                if y_position + (vehicle.length - 1) != self.height - 1:
                     if self.board[y_position + vehicle.length][x_position] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position, y_position + 1, vehicle.orientation, vehicle.length)
@@ -76,7 +81,9 @@ class Gameboard():
 
     def hasSolved(self):
         for vehicle in self.vehicles:
-            if vehicle.id == '#' and vehicle.x == 4 and vehicle.y == 2 and vehicle.orientation == "H":
+            winning_x = dimensions.width - 2
+            winning_y = ceil(dimensions.height / 2) - 1
+            if vehicle.id == '#' and vehicle.x == winning_x and vehicle.y == winning_y and vehicle.orientation == "H":
                 return True
 
         return False
