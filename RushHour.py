@@ -6,7 +6,7 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle
-from Algorithms import breadth_First_Search, randomSolver
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search
 import os
 import dimensions
 
@@ -23,10 +23,6 @@ def uploadBoard(filepath):
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    p = Gameboard(uploadBoard("Boards/game2.csv"))
-    breadth_First_Search(p)
-=======
     dimensions.init()
     boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     path = "Boards/"
@@ -53,4 +49,3 @@ if __name__ == "__main__":
         for item in os.listdir(path):
             print (item)
         width, height = 12, 12
->>>>>>> 3962394135e026a686c13a0dc39f17eb648cd7ba
