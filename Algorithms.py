@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import copy
-=======
 import sys
 import numpy as np
 import csv
 import random
 import copy
 import time
->>>>>>> 3962394135e026a686c13a0dc39f17eb648cd7ba
 import queue
 from RushClass import Gameboard, Vehicle
 
@@ -26,7 +22,36 @@ def randomSolver(gameboard):
                 runwriter.writerow([j])
                 break
 
+def depth_First_Search(gameboard):
+    beginposition = copy.copy(gameboard)
+    Stack = []
+    visited = set()
+    boardnumbers = {}
+    solutions = {}
+    number = 0
+    Stack.append(beginposition)
+    visited.add(beginposition)
+    boardnumbers[beginposition] = number
+    number += 1
+    # Stack.pop() if no value give between brackets, item at end of the list is returned
+    while len(Stack) != 0 :
+        new_board = Stack.pop()
+        childList = new_board.checkformoves()
 
+        for child in childList:
+            newgameboard = Gameboard(child)
+            boardnumbers[newgameboard] = number
+            number += 1
+            solutions[boardnumbers[newgameboard]] = boardnumbers[new_board]
+            if newgameboard.hasSolved():
+                solution = newgameboard
+                print(backtrace(solutions, boardnumbers, beginposition, solution));
+                return  print(newgameboard)
+            if newgameboard in visited:
+                continue
+            else:
+                Stack.append(newgameboard)
+                visited.add(newgameboard)
 
 def breadth_First_Search(gameboard):
     beginposition = copy.copy(gameboard)
@@ -42,7 +67,6 @@ def breadth_First_Search(gameboard):
     while boardsQueue.qsize() != 0 :
         new_board = boardsQueue.get()
         childList = new_board.checkformoves()
-
         for child in childList:
             newgameboard = Gameboard(child)
             boardnumbers[newgameboard] = number
