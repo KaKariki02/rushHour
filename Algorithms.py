@@ -58,28 +58,37 @@ def depth_First_Search(gameboard):
                 visited.add(newgameboard)
 
 def breadth_First_Search(gameboard):
-    print("starting")
+    # get current time
     start_time = time.time()
+
+    # initialize
     boardsQueue = deque()
-    boardsQueue.appendleft((gameboard, tuple()))
     visited = set()
-    number = 0
+
+    # put intial gameboard and empty tuple in queue
+    boardsQueue.appendleft((gameboard, tuple()))
+
+    # add initial gameboard to archive
     visited.add(gameboard)
     while len(boardsQueue) != 0 :
-        print(number)
-        number += 1
+        # pop new board and path
         new_board, new_boardPath = boardsQueue.pop()
-        # print(new_board)
+
+        # append path with new board
         new_boardPath = new_boardPath + tuple([new_board])
 
+        # if board is not yet in visited, add it
         if new_board in visited:
             pass
         else:
             visited.add(new_board)
 
+        # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return backtraceV2(new_boardPath)
+            return {"path": new_boardPath,"solvetime": time.time() - start_time}
+
+        # else add all possible boards to queue, if theyre not in visited
         else:
             for move in new_board.checkformoves():
                 newgameboard = Gameboard(move)
