@@ -34,7 +34,7 @@ if __name__ == "__main__":
         for item in os.listdir(path):
             print (item)
         path = path + input("Which board would you like to solve?")
-        breadth_First_Search(Gameboard(uploadBoard(path)))
+        depth_First_Search(Gameboard(uploadBoard(path)))
     if (boardsize == "2" or boardsize == "9x9"):
         path = path + "9x9/"
         dimensions.width = 9
@@ -43,7 +43,7 @@ if __name__ == "__main__":
         for item in os.listdir(path):
             print (item)
         path = path + input("Which board would you like to solve?")
-        breadth_First_Search(Gameboard(uploadBoard(path)))
+        depth_First_Search(Gameboard(uploadBoard(path)))
     if (boardsize == "3" or boardsize == "12x12"):
         path = path + "12x12/"
         for item in os.listdir(path):

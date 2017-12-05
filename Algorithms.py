@@ -23,6 +23,7 @@ def randomSolver(gameboard):
                 break
 
 def depth_First_Search(gameboard):
+    start_time = time.time()
     beginposition = copy.copy(gameboard)
     Stack = []
     visited = set()
@@ -46,6 +47,8 @@ def depth_First_Search(gameboard):
             if newgameboard.hasSolved():
                 solution = newgameboard
                 print(backtrace(solutions, boardnumbers, beginposition, solution));
+                elapsed_time = time.time() - start_time
+                print("Solved the puzzle in: {}".format(elapsed_time))
                 return  print(newgameboard)
             if newgameboard in visited:
                 continue
@@ -54,6 +57,7 @@ def depth_First_Search(gameboard):
                 visited.add(newgameboard)
 
 def breadth_First_Search(gameboard):
+    start_time = time.time()
     beginposition = copy.copy(gameboard)
     boardsQueue = queue.Queue()
     visited = set()
@@ -75,6 +79,8 @@ def breadth_First_Search(gameboard):
             if newgameboard.hasSolved():
                 solution = newgameboard
                 print(backtrace(solutions, boardnumbers, beginposition, solution));
+                elapsed_time = time.time() - start_time
+                print("Solved the puzzle in: {}".format(elapsed_time))
                 return  print(newgameboard)
             if newgameboard in visited:
                 continue
