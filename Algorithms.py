@@ -9,53 +9,54 @@ from RushClass import Gameboard, Vehicle
 from collections import deque
 
 def randomSolver(gameboard):
-
-    runtimes = open('runtime.csv', 'w')
-    runwriter = csv.writer(runtimes)
-    for i in range(5000):
-        print (i)
-        newgameboard = copy.copy(gameboard)
-        j=0
-        while True:
-            newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-            j += 1
-            if newgameboard.hasSolved():
-                runwriter.writerow([j])
-                break
+    start_time = time.time()
+    newgameboard = copy.copy(gameboard)
+    j=0
+    while True:
+        newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
+        j += 1
+        if newgameboard.hasSolved():
+            return {"solvetime": time.time() - start_time, "steps": j}
 
 def depth_First_Search(gameboard):
     start_time = time.time()
-    beginposition = copy.copy(gameboard)
     Stack = []
-    visited = set()
-    boardnumbers = {}
-    solutions = {}
     number = 0
-    Stack.append(beginposition)
-    visited.add(beginposition)
-    boardnumbers[beginposition] = number
-    number += 1
+    visited = set()
+    Stack.append((gameboard, tuple()))
+    visited.add(gameboard)
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
-        new_board = Stack.pop()
-        childList = new_board.checkformoves()
+        # pop new board and path
+        new_board, new_boardPath = Stack.pop()
 
-        for child in childList:
-            newgameboard = Gameboard(child)
-            boardnumbers[newgameboard] = number
-            number += 1
-            solutions[boardnumbers[newgameboard]] = boardnumbers[new_board]
-            if newgameboard.hasSolved():
-                solution = newgameboard
-                print(backtrace(solutions, boardnumbers, beginposition, solution));
-                elapsed_time = time.time() - start_time
-                print("Solved the puzzle in: {}".format(elapsed_time))
-                return  print(newgameboard)
-            if newgameboard in visited:
-                continue
-            else:
-                Stack.append(newgameboard)
-                visited.add(newgameboard)
+        number += 1
+
+        # append path with new board
+        new_boardPath = new_boardPath + tuple([new_board])
+
+        # if board is not yet in visited, add it TODO
+        if new_board in visited:
+            pass
+        else:
+            visited.add(new_board)
+
+        # if board is solved, run backtraceV2
+        if new_board.hasSolved():
+            print ("found board")
+            return {"path": new_boardPath,"solvetime": time.time() - start_time,"nodes": number, "amount_steps": len(new_boardPath)}
+
+        # else add all possible boards to queue, if theyre not in visited
+        else:
+            for move in new_board.checkformoves():
+                newgameboard = Gameboard(move)
+                if newgameboard in visited:
+                    pass
+                else:
+                    game = Gameboard(move)
+                    visited.add(game)
+                    pair = (game, new_boardPath)
+                    Stack.append(pair)
 
 def breadth_First_Search(gameboard):
     # get current time
@@ -90,7 +91,7 @@ def breadth_First_Search(gameboard):
         # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return {"path": new_boardPath,"solvetime": time.time() - start_time, "nodes_popped": number}
+            return {"path": new_boardPath,"solvetime": time.time() - start_time, "nodes_popped": number, "amount_steps": len(new_boardPath)}
 
         # else add all possible boards to queue, if theyre not in visited
         else:
@@ -115,5 +116,18 @@ def backtrace(solutions, boardnumbers, beginposition, solution):
     return path, numberofsteps
 
 def  backtraceV2(path):
-    for board in path:
-        print(board)
+    moves = []
+    for i in range(len(path) - 1) :
+        board1 = path[i]
+        board2 = path[i+1]
+        original = list(set(board1.vehicles) - set(board2.vehicles))[0]
+        nieuw = list(set(board2.vehicles) - set(board1.vehicles))[0]
+        if original.x < nieuw.x:
+            moves.append("{0} naar rechts".format(original.id))
+        if original.x > nieuw.x:
+            moves.append("{0} naar links".format(original.id))
+        if original.y < nieuw.y:
+            moves.append("{0} naar beneden".format(original.id))
+        if original.y > nieuw.y:
+            moves.append("{0} naar boven".format(original.id))
+    return moves

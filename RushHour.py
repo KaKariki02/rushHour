@@ -6,7 +6,7 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle
-from Algorithms import breadth_First_Search, randomSolver, depth_First_Search
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
 import os
 import dimensions
 
@@ -18,7 +18,7 @@ def uploadBoard(filepath):
         next(boardreader)
         for row in boardreader:
             id, x, y, orientation, length = row
-            vehicles.append(Vehicle(id, x, y, orientation, length))
+            vehicles.append(Vehicle(id, int(x), int(y), orientation, length))
 
     return vehicles
 
@@ -59,8 +59,18 @@ if __name__ == "__main__":
 
     algorithm = input("Which algorithm would you like to use?\n 1. Random Solver\n 2. Breadth First Search\n 3. Depth First Search\n")
     if (algorithm == "1" or algorithm.lower() == "random solver"):
-        randomSolver(Gameboard(uploadBoard(path)))
+        results = randomSolver(Gameboard(uploadBoard(path)))
+        print(results["solvetime"])
+        print(results["steps"])
     if (algorithm == "2" or algorithm.lower() == "breadth first search"):
-        breadth_First_Search(Gameboard(uploadBoard(path)))
+        results = breadth_First_Search(Gameboard(uploadBoard(path)))
+        print (backtraceV2(results["path"]))
+        print(results["amount_steps"])
+        print(results["solvetime"])
+        print(results["nodes_popped"])
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
-        depth_First_Search(Gameboard(uploadBoard(path)))
+        results = depth_First_Search(Gameboard(uploadBoard(path)))
+        print (backtraceV2(results["path"]))
+        print(results["amount_steps"])
+        print(results["solvetime"])
+        print(results["nodes"])
