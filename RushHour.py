@@ -10,6 +10,7 @@ from Algorithms import breadth_First_Search, randomSolver, depth_First_Search
 import os
 import dimensions
 
+# Get vehicles from csv file and return as vehicle class
 def uploadBoard(filepath):
     vehicles = []
     with open(filepath, 'r') as csvboard:
@@ -23,6 +24,8 @@ def uploadBoard(filepath):
 
 
 if __name__ == "__main__":
+    # let user choose boardsize and the game
+    # load game in gameboard class and solve with depth first search algorithm
     dimensions.init()
     boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     path = "Boards/"

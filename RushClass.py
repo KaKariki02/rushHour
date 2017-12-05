@@ -1,6 +1,8 @@
 import dimensions
 from math import ceil
 
+# Class Vehicle with properties for id, x-coordinate, y-coordinate, vertical or
+# horizontal orientation and the length of the vehicle
 class Vehicle():
     def __init__(self, id, x, y, orientation, length):
         self.id = id
@@ -20,8 +22,11 @@ class Gameboard():
         self.width = dimensions.width
         self.height = dimensions.height
 
+        # Fill the board with dots
         self.board = [["." for x in range(self.width)] for y in range(self.height)]
         self.vehicles = vehicles
+
+        # Place vehicles on the board
         for vehicle in self.vehicles:
             if vehicle.orientation == 'H':
                 for i in range(vehicle.length):
@@ -30,22 +35,27 @@ class Gameboard():
                 for i in range(vehicle.length):
                     self.board[int(vehicle.y)+i][int(vehicle.x)] = vehicle.id
 
+    # hash the gameboardstring
     def __hash__(self):
         return hash(self.__repr__())
 
+    # represents the gameboardobject as a string
     def __repr__(self):
         self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])
         return self.printableboard
 
+    # compare two hashed gameboards
     def __eq__(self, other):
         return hash(self) == hash(other)
 
+    # check if vehicle is oriented horizontal or vertical and if it's not on the edge of the board
+    # move if not blocked by another vehicle
     def checkformoves(self):
         possibleBoards = []
         for vehicle in self.vehicles:
             x_position = int(vehicle.x)
             y_position = int(vehicle.y)
-            move = 1
+
             if vehicle.orientation == 'H':
                 if x_position != 0:
                     if self.board[y_position][x_position - 1] == '.':
@@ -79,6 +89,7 @@ class Gameboard():
 
         return possibleBoards
 
+    # check if the red car is at the winning position
     def hasSolved(self):
         for vehicle in self.vehicles:
             winning_x = dimensions.width - 2
@@ -87,8 +98,3 @@ class Gameboard():
                 return True
 
         return False
-
-    def printPossibilities(self):
-        for board in Gameboard.checkformoves(self):
-            for vehicle in board:
-                print(vehicle.id, vehicle.x, vehicle.y, vehicle.orientation)
