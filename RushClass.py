@@ -10,7 +10,14 @@ class Vehicle():
         self.length = int(length)
 
     def __repr__(self):
-        return True
+        return "'{0}{1}{2}{3}'".format(self.id, self.x, self.y, self.orientation)
+
+    def __hash__(self):
+        return hash(self.__repr__())
+
+    def __eq__(self, other):
+        return hash(self) == hash(other)
+
 
 class Gameboard():
 #GRID = 6
