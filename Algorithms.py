@@ -6,6 +6,7 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle
+from collections import deque
 
 def randomSolver(gameboard):
 
@@ -57,42 +58,49 @@ def depth_First_Search(gameboard):
                 visited.add(newgameboard)
 
 def breadth_First_Search(gameboard):
+    print("starting")
     start_time = time.time()
-    beginposition = copy.copy(gameboard)
-    boardsQueue = queue.Queue()
+    boardsQueue = deque()
+    boardsQueue.appendleft((gameboard, tuple()))
     visited = set()
-    boardnumbers = {}
-    solutions = {}
     number = 0
-    boardsQueue.put(beginposition)
-    visited.add(beginposition)
-    boardnumbers[beginposition] = number
-    number += 1
-    while boardsQueue.qsize() != 0 :
-        new_board = boardsQueue.get()
-        childList = new_board.checkformoves()
-        for child in childList:
-            newgameboard = Gameboard(child)
-            boardnumbers[newgameboard] = number
-            number += 1
-            solutions[boardnumbers[newgameboard]] = boardnumbers[new_board]
-            if newgameboard.hasSolved():
-                solution = newgameboard
-                print(backtrace(solutions, boardnumbers, beginposition, solution));
-                elapsed_time = time.time() - start_time
-                print("Solved the puzzle in: {}".format(elapsed_time))
-                return  print(newgameboard)
-            if newgameboard in visited:
-                continue
-            else:
-                boardsQueue.put(newgameboard)
-                visited.add(newgameboard)
+    visited.add(gameboard)
+    while len(boardsQueue) != 0 :
+        print(number)
+        number += 1
+        new_board, new_boardPath = boardsQueue.pop()
+        # print(new_board)
+        new_boardPath = new_boardPath + tuple([new_board])
+
+        if new_board in visited:
+            pass
+        else:
+            visited.add(new_board)
+
+        if new_board.hasSolved():
+            print ("found board")
+            return backtraceV2(new_boardPath)
+        else:
+            for move in new_board.checkformoves():
+                newgameboard = Gameboard(move)
+                if newgameboard in visited:
+                    pass
+                else:
+                    game = Gameboard(move)
+                    visited.add(game)
+                    pair = (game, new_boardPath)
+                    boardsQueue.appendleft(pair)
+
 
 def backtrace(solutions, boardnumbers, beginposition, solution):
     numberofsteps = 0
     path = [boardnumbers[solution]]
-    while path[-1] != 0:
+    while path[-1]  !=  0:
         path.append(solutions[path[-1]])
         numberofsteps += 1
     path.reverse()
     return path, numberofsteps
+
+def  backtraceV2(path):
+    for board in path:
+        print(board)
