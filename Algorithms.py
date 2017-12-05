@@ -65,6 +65,8 @@ def breadth_First_Search(gameboard):
     boardsQueue = deque()
     visited = set()
 
+    number = 0
+
     # put intial gameboard and empty tuple in queue
     boardsQueue.appendleft((gameboard, tuple()))
 
@@ -73,6 +75,8 @@ def breadth_First_Search(gameboard):
     while len(boardsQueue) != 0 :
         # pop new board and path
         new_board, new_boardPath = boardsQueue.pop()
+
+        number += 1
 
         # append path with new board
         new_boardPath = new_boardPath + tuple([new_board])
@@ -86,7 +90,7 @@ def breadth_First_Search(gameboard):
         # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return {"path": new_boardPath,"solvetime": time.time() - start_time}
+            return {"path": new_boardPath,"solvetime": time.time() - start_time, "nodes_popped": number}
 
         # else add all possible boards to queue, if theyre not in visited
         else:
