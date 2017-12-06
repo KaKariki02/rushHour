@@ -1,4 +1,3 @@
-import dimensions
 from math import ceil
 
 # Class Vehicle with properties for id, x-coordinate, y-coordinate, vertical or
@@ -20,14 +19,18 @@ class Vehicle():
     def __eq__(self, other):
         return hash(self) == hash(other)
 
+class Dimensions():
+    def init():
+        global width
+        global height
 
 class Gameboard():
 #GRID = 6
 
     def __init__(self, vehicles):
 
-        self.width = dimensions.width
-        self.height = dimensions.height
+        self.width = Dimensions.width
+        self.height = Dimensions.height
 
         # Fill the board with dots
         self.board = [["." for x in range(self.width)] for y in range(self.height)]
@@ -99,8 +102,8 @@ class Gameboard():
     # check if the red car is at the winning position
     def hasSolved(self):
         for vehicle in self.vehicles:
-            winning_x = dimensions.width - 2
-            winning_y = ceil(dimensions.height / 2) - 1
+            winning_x = Dimensions.width - 2
+            winning_y = ceil(Dimensions.height / 2) - 1
             if vehicle.id == '#' and vehicle.x == winning_x and vehicle.y == winning_y and vehicle.orientation == "H":
                 return True
 
