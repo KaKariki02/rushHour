@@ -9,15 +9,14 @@ from RushClass import Gameboard, Vehicle
 from collections import deque
 
 def randomSolver(gameboard):
-    start_time = time.time()
+
     newgameboard = copy.copy(gameboard)
     j=0
     while True:
         newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
         j += 1
         if newgameboard.hasSolved():
-            return {"solvetime": time.time() - start_time, "steps": j}
-
+            return True
 def depth_First_Search(gameboard):
     start_time = time.time()
     Stack = []
@@ -44,7 +43,7 @@ def depth_First_Search(gameboard):
         # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return {"path": new_boardPath,"solvetime": time.time() - start_time,"nodes": number, "amount_steps": len(new_boardPath)}
+            return {"path": new_boardPath,"solvetime": time.time() - start_time,"nodes": number, "amount_steps": len(new_boardPath), "visited": len(visited)}
 
         # else add all possible boards to queue, if theyre not in visited
         else:
@@ -57,6 +56,71 @@ def depth_First_Search(gameboard):
                     visited.add(game)
                     pair = (game, new_boardPath)
                     Stack.append(pair)
+def depth_First_Search_without(gameboard):
+    start_time = time.time()
+    Stack = []
+    number = 0
+    visited = set()
+    Stack.append(gameboard)
+    visited.add(gameboard)
+    # Stack.pop() if no value give between brackets, item at end of the list is returned
+    while len(Stack) != 0 :
+        print(len(Stack))
+        # pop new board and path
+        new_board = Stack.pop()
+
+        number += 1
+        print(number)
+
+        # if board is solved, run backtraceV2
+        if new_board.hasSolved():
+            print ("found board")
+            return {"solvetime": time.time() - start_time, "nodes": number, "visited": len(visited)}
+
+        # else add all possible boards to queue, if theyre not in visited
+        else:
+            for move in new_board.checkformoves():
+                newgameboard = Gameboard(move)
+                if newgameboard in visited:
+                    pass
+                else:
+                    visited.add(newgameboard)
+                    Stack.append(newgameboard)
+
+def breadth_First_Search_without(gameboard):
+    # get current time
+    start_time = time.time()
+
+    # initialize
+    boardsQueue = deque()
+    visited = set()
+
+    number = 0
+
+    # put intial gameboard and empty tuple in queue
+    boardsQueue.appendleft(gameboard)
+
+    # add initial gameboard to archive
+    visited.add(gameboard)
+    while len(boardsQueue) != 0 :
+        # pop new board and path
+        new_board = boardsQueue.pop()
+
+        number += 1
+        # if board is solved, run backtraceV2
+        if new_board.hasSolved():
+            print ("found board")
+            return {"solvetime": time.time() - start_time, "nodes_popped": number}
+
+        # else add all possible boards to queue, if theyre not in visited
+        else:
+            for move in new_board.checkformoves():
+                newgameboard = Gameboard(move)
+                if newgameboard in visited:
+                    pass
+                else:
+                    visited.add(newgameboard)
+                    boardsQueue.appendleft(newgameboard)
 
 def breadth_First_Search(gameboard):
     # get current time
@@ -100,10 +164,8 @@ def breadth_First_Search(gameboard):
                 if newgameboard in visited:
                     pass
                 else:
-                    game = Gameboard(move)
-                    visited.add(game)
-                    pair = (game, new_boardPath)
-                    boardsQueue.appendleft(pair)
+                    visited.add(newgameboard)
+                    boardsQueue.appendleft((newgameboard, new_boardPath))
 
 
 def backtrace(solutions, boardnumbers, beginposition, solution):

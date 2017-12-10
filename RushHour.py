@@ -6,7 +6,7 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle
-from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, breadth_First_Search_without, depth_First_Search_without
 import os
 import dimensions
 
@@ -69,8 +69,20 @@ if __name__ == "__main__":
         print(results["solvetime"])
         print(results["nodes_popped"])
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
-        results = depth_First_Search(Gameboard(uploadBoard(path)))
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        results = depth_First_Search(game)
         print (backtraceV2(results["path"]))
         print(results["amount_steps"])
         print(results["solvetime"])
         print(results["nodes"])
+        print(results["visited"])
+    if (algorithm == "4" or algorithm.lower() == "breath first without"):
+        game = Gameboard(uploadBoard(path))
+        results = breadth_First_Search_without(game)
+        print("Time: " + results["solvetime"])
+        print("Nodes: " + results["nodes_popped"])
+    if(algorithm  == "5"):
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        depth_First_Search_without(game)
