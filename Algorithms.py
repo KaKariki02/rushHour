@@ -90,14 +90,10 @@ def breadth_First_Search_without(gameboard):
     archive = {}
     # initialize
     boardsQueue = deque()
-<<<<<<< HEAD
 
     archive  = {}
-
-=======
     visited = set()
     archive[gameboard] = 0
->>>>>>> 85428fbe2735a4458166fb190111c4fb41bea38f
     number = 0
 
     # put intial gameboard and empty tuple in queue
@@ -113,7 +109,7 @@ def breadth_First_Search_without(gameboard):
         # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return {"solvetime": time.time() - start_time, "nodes_popped": number}
+            return {"solvetime": time.time() - start_time, "nodes_popped": number, "archive": archive, "solution": new_board}
 
         # else add all possible boards to queue, if theyre not in visited
         else:
@@ -122,7 +118,7 @@ def breadth_First_Search_without(gameboard):
                 if newgameboard in archive:
                     pass
                 else:
-                    archive[newgameboard] = gameboard
+                    archive[newgameboard] = new_board
                     boardsQueue.appendleft(newgameboard)
                     archive[newgameboard] = new_board
 
@@ -205,6 +201,7 @@ def backtrace(dictionary, solution):
     while path[-1]  !=  0:
         path.append(dictionary[path[-1]])
 
+    path = path[:-1]
     path.reverse()
     return path
 
