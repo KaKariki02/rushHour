@@ -17,6 +17,8 @@ def randomSolver(gameboard):
         j += 1
         if newgameboard.hasSolved():
             return True
+
+
 def depth_First_Search(gameboard):
     start_time = time.time()
     Stack = []
@@ -59,9 +61,8 @@ def depth_First_Search_without(gameboard):
     start_time = time.time()
     Stack = []
     number = 0
-    visited = set()
+    archive = {}
     Stack.append(gameboard)
-    visited.add(gameboard)
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
         # pop new board and path
@@ -72,16 +73,16 @@ def depth_First_Search_without(gameboard):
         # if board is solved, run backtraceV2
         if new_board.hasSolved():
             print ("found board")
-            return {"solvetime": time.time() - start_time, "nodes": number, "visited": len(visited)}
+            return {"solvetime": time.time() - start_time, "nodes": number, "archive": archive, "solution": new_board }
 
         # else add all possible boards to queue, if theyre not in visited
         else:
             for move in new_board.checkformoves():
                 newgameboard = Gameboard(move)
-                if newgameboard in visited:
+                if newgameboard in archive:
                     pass
                 else:
-                    visited.add(newgameboard)
+                    archive[newgameboard] = new_board
                     Stack.append(newgameboard)
 
 def breadth_First_Search_without(gameboard):
@@ -92,7 +93,6 @@ def breadth_First_Search_without(gameboard):
     boardsQueue = deque()
 
     archive  = {}
-    visited = set()
     archive[gameboard] = 0
     number = 0
 
@@ -118,7 +118,6 @@ def breadth_First_Search_without(gameboard):
                 if newgameboard in archive:
                     pass
                 else:
-                    archive[newgameboard] = new_board
                     boardsQueue.appendleft(newgameboard)
                     archive[newgameboard] = new_board
 

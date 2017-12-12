@@ -86,5 +86,9 @@ if __name__ == "__main__":
         print(backtraceV2(path))
     if(algorithm  == "5"):
         game = Gameboard(uploadBoard(path))
-        print(game)
-        depth_First_Search_without(game)
+        results = depth_First_Search_without(game)
+        print("Time: " + str(results["solvetime"]))
+        print("Nodes: " + str(results["nodes"]))
+        path = backtrace(results["archive"], results["solution"])
+        print("Length solution: " + str(len(path)))
+        print(backtraceV2(path))
