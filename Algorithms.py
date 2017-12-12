@@ -9,14 +9,14 @@ from RushClass import Gameboard, Vehicle
 from collections import deque
 
 def randomSolver(gameboard):
-
-    newgameboard = copy.copy(gameboard)
-    j=0
+    start_time = time.time()
+    newgameboard = gameboard
+    steps=0
     while True:
         newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-        j += 1
+        steps += 1
         if newgameboard.hasSolved():
-            return True
+            return {"solvetime": time.time() - start_time, "steps": steps}
 
 
 def depth_First_Search(gameboard):
@@ -62,6 +62,7 @@ def depth_First_Search_without(gameboard):
     Stack = []
     number = 0
     archive = {}
+    archive[gameboard] = 0
     Stack.append(gameboard)
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
@@ -120,32 +121,6 @@ def breadth_First_Search_without(gameboard):
                 else:
                     boardsQueue.appendleft(newgameboard)
                     archive[newgameboard] = new_board
-
-def bfs(gameboard):
-    beginposition = gameboard
-    boardQueue = queue.Queue()
-    visited = set()
-    dictionary = {}
-    number = 0
-    boardQueue.put(beginposition)
-    visited.add(beginposition)
-
-    while boardQueue.qsize() != 0:
-        newboard = boardQueue.get()
-        number += 1
-        childlist = newboard.checkformoves()
-        for child in childlist:
-            new = Gameboard(child)
-            dictionary[new] = newboard
-
-            if new.hasSolved():
-                solution = new
-                path = backtrace(dictionary, solution)
-                print ("found board")
-                return {"path": path,"solvetime": time.time() - start_time, "nodes_popped": number, "amount_steps": len(path)}
-            else:
-                boardQueue.put(new)
-                visited.add(new)
 
 
 def breadth_First_Search(gameboard):

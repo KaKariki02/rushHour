@@ -91,4 +91,4 @@ if __name__ == "__main__":
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
-        print(backtraceV2(path))
+        #print(backtraceV2(path))
