@@ -52,10 +52,9 @@ def depth_First_Search(gameboard):
                 if newgameboard in visited:
                     pass
                 else:
-                    game = Gameboard(move)
-                    visited.add(game)
-                    pair = (game, new_boardPath)
-                    Stack.append(pair)
+                    visited.add(newgameboard)
+                    Stack.append((newgameboard, new_boardPath))
+
 def depth_First_Search_without(gameboard):
     start_time = time.time()
     Stack = []
@@ -88,12 +87,17 @@ def depth_First_Search_without(gameboard):
 def breadth_First_Search_without(gameboard):
     # get current time
     start_time = time.time()
-
+    archive = {}
     # initialize
     boardsQueue = deque()
+<<<<<<< HEAD
 
     archive  = {}
 
+=======
+    visited = set()
+    archive[gameboard] = 0
+>>>>>>> 85428fbe2735a4458166fb190111c4fb41bea38f
     number = 0
 
     # put intial gameboard and empty tuple in queue
@@ -120,6 +124,7 @@ def breadth_First_Search_without(gameboard):
                 else:
                     archive[newgameboard] = gameboard
                     boardsQueue.appendleft(newgameboard)
+                    archive[newgameboard] = new_board
 
 def bfs(gameboard):
     beginposition = gameboard
