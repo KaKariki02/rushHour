@@ -65,12 +65,10 @@ def depth_First_Search_without(gameboard):
     visited.add(gameboard)
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
-        print(len(Stack))
         # pop new board and path
         new_board = Stack.pop()
 
         number += 1
-        print(number)
 
         # if board is solved, run backtraceV2
         if new_board.hasSolved():

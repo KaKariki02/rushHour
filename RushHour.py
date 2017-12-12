@@ -80,8 +80,8 @@ if __name__ == "__main__":
     if (algorithm == "4" or algorithm.lower() == "breath first without"):
         game = Gameboard(uploadBoard(path))
         results = breadth_First_Search_without(game)
-        print("Time: " + results["solvetime"])
-        print("Nodes: " + results["nodes_popped"])
+        print("Time: " + str(results["solvetime"]))
+        print("Nodes: " + str(results["nodes_popped"]))
     if(algorithm  == "5"):
         game = Gameboard(uploadBoard(path))
         print(game)
