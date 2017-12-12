@@ -91,7 +91,8 @@ def breadth_First_Search_without(gameboard):
 
     # initialize
     boardsQueue = deque()
-    visited = set()
+
+    archive  = {}
 
     number = 0
 
@@ -99,7 +100,7 @@ def breadth_First_Search_without(gameboard):
     boardsQueue.appendleft(gameboard)
 
     # add initial gameboard to archive
-    visited.add(gameboard)
+    archive[gameboard] = 0
     while len(boardsQueue) != 0 :
         # pop new board and path
         new_board = boardsQueue.pop()
@@ -114,10 +115,10 @@ def breadth_First_Search_without(gameboard):
         else:
             for move in new_board.checkformoves():
                 newgameboard = Gameboard(move)
-                if newgameboard in visited:
+                if newgameboard in archive:
                     pass
                 else:
-                    visited.add(newgameboard)
+                    archive[newgameboard] = gameboard
                     boardsQueue.appendleft(newgameboard)
 
 def bfs(gameboard):
