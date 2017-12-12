@@ -12,12 +12,12 @@ Rush Hour Solver solves boards of size 6x6, 9x9 and 12x12 with three different a
 <img src="http://heuristieken.nl/wiki/images/c/c7/Rushhour6x6_3.jpg" width="150" />
 
 9x9: game 4, game 5, game 6  
-<img src="http://heuristieken.nl/wiki/images/9/96/Rushhour9x9_1.jpg" width="150" />
-<img src="http://heuristieken.nl/wiki/images/1/1e/Rushhour9x9_2.jpg" width="150" />
-<img src="http://heuristieken.nl/wiki/images/9/95/Rushhour9x9_3.jpg" width="150" />
+<img src="http://heuristieken.nl/wiki/images/9/96/Rushhour9x9_1.jpg" width="200" />
+<img src="http://heuristieken.nl/wiki/images/1/1e/Rushhour9x9_2.jpg" width="200" />
+<img src="http://heuristieken.nl/wiki/images/9/95/Rushhour9x9_3.jpg" width="200" />
   
 12x12: game 7  
-<img src="http://heuristieken.nl/wiki/images/2/26/Rushhour12x12_1.jpg" width="150" />
+<img src="http://heuristieken.nl/wiki/images/2/26/Rushhour12x12_1.jpg" width="250" />
 
 RushHour.py is the main file where the user can choose the boardsize and the game and where the code is run.  
 
