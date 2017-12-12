@@ -5,10 +5,14 @@ import random
 import copy
 import time
 import queue
+<<<<<<< HEAD
 from RushClass import Gameboard, Vehicle
 from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, breadth_First_Search_without, depth_First_Search_without
+=======
+from RushClass import Gameboard, Vehicle, Dimensions
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
+>>>>>>> b29452614ad97179013f7c08d8532285d24b84ee
 import os
-import dimensions
 
 # Get vehicles from csv file and return as vehicle class
 def uploadBoard(filepath):
@@ -26,14 +30,14 @@ def uploadBoard(filepath):
 if __name__ == "__main__":
     # let user choose the boardsize, the game and the algorithm
     # load game in gameboard class and solve with the chosen algorithm
-    dimensions.init()
+    Dimensions.init()
     boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     path = "Boards/"
 
     if (boardsize == "1" or boardsize =="6x6"):
         path = path + "6x6/"
-        dimensions.width = 6
-        dimensions.height = 6
+        Dimensions.width = 6
+        Dimensions.height = 6
         print("These 6x6 boards are available:")
         for item in os.listdir(path):
             print (item)
@@ -41,8 +45,8 @@ if __name__ == "__main__":
 
     if (boardsize == "2" or boardsize == "9x9"):
         path = path + "9x9/"
-        dimensions.width = 9
-        dimensions.height = 9
+        Dimensions.width = 9
+        Dimensions.height = 9
         print("These 9x9 boards are available:")
         for item in os.listdir(path):
             print (item)
@@ -52,8 +56,8 @@ if __name__ == "__main__":
         path = path + "12x12/"
         for item in os.listdir(path):
             print (item)
-        dimensions.width = 12
-        dimensions.height = 12
+        Dimensions.width = 12
+        Dimensions.height = 12
         path = path + "game7.csv"
 
 
