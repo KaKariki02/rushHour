@@ -5,8 +5,17 @@ import random
 import copy
 import time
 import queue
+<<<<<<< HEAD
+from RushClass import Gameboard, Vehicle
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, breadth_First_Search_without, depth_First_Search_without
+=======
 from RushClass import Gameboard, Vehicle, Dimensions
+<<<<<<< HEAD
 from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, backtrace, bfs
+=======
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
+>>>>>>> b29452614ad97179013f7c08d8532285d24b84ee
+>>>>>>> 220615a2f0fd3bee10006627e75691a3c5604a25
 import os
 
 # Get vehicles from csv file and return as vehicle class
@@ -69,8 +78,20 @@ if __name__ == "__main__":
         print(results["solvetime"])
         print(results["nodes_popped"])
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
-        results = depth_First_Search(Gameboard(uploadBoard(path)))
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        results = depth_First_Search(game)
         print (backtraceV2(results["path"]))
         print(results["amount_steps"])
         print(results["solvetime"])
         print(results["nodes"])
+        print(results["visited"])
+    if (algorithm == "4" or algorithm.lower() == "breath first without"):
+        game = Gameboard(uploadBoard(path))
+        results = breadth_First_Search_without(game)
+        print("Time: " + str(results["solvetime"]))
+        print("Nodes: " + str(results["nodes_popped"]))
+    if(algorithm  == "5"):
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        depth_First_Search_without(game)
