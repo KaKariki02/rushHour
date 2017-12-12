@@ -7,7 +7,7 @@ The game Rush Hour is a puzzle on a 6x6 board where you have to move the red car
 Rush Hour Solver solves boards of size 6x6, 9x9 and 12x12 with three different algorithms as fast as possible. Rush Hour Solver contains the following games:  
 
 6x6: game 1, game 2, game 3  
-![alt text](http://heuristieken.nl/wiki/images/9/95/Rushhour6x6_1.jpg) ![alt text](http://heuristieken.nl/wiki/images/a/aa/Rushhour6x6_2.jpg) ![alt text](http://heuristieken.nl/wiki/images/c/c7/Rushhour6x6_3.jpg)  
+![alt text](http://heuristieken.nl/wiki/images/9/95/Rushhour6x6_1.jpg | witdh=100) ![alt text](http://heuristieken.nl/wiki/images/a/aa/Rushhour6x6_2.jpg | witdh=100) ![alt text](http://heuristieken.nl/wiki/images/c/c7/Rushhour6x6_3.jpg | witdh=100)  
 
 RushHour.py is the main file where the user can choose the boardsize and the game and where the code is run.  
 
