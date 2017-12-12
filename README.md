@@ -2,9 +2,7 @@
 
 ![alt text](http://heuristieken.nl/wiki/images/d/df/Rushhour.jpg)
 
-The game Rush Hour is a puzzle on a 6x6 board where you have to move the red car to the exit. Other vehicles of length 2 or 3 block the way. It is only allowed to move the vehicles in their driving position, turning is not possible.  
-
-Rush Hour Solver solves boards of size 6x6, 9x9 and 12x12 with three different algorithms as fast as possible. Rush Hour Solver contains the following games:  
+The game Rush Hour is a puzzle on a 6x6 board where you have to move the red car to the exit. Other vehicles of length 2 or 3 block the way. It is only allowed to move the vehicles in their driving position, turning is not possible. Rush Hour Solver solves boards of size 6x6, 9x9 and 12x12 with three different algorithms as fast as possible. Rush Hour Solver contains the following games:  
 
 6x6: game 1, game 2, game 3  
 <img src="http://heuristieken.nl/wiki/images/9/95/Rushhour6x6_1.jpg" width="150" />
