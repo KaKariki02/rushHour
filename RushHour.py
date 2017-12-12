@@ -6,7 +6,16 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
+<<<<<<< HEAD
 from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, breadth_First_Search_without, depth_First_Search_without
+=======
+<<<<<<< HEAD
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, backtrace, bfs
+=======
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
+>>>>>>> b29452614ad97179013f7c08d8532285d24b84ee
+>>>>>>> 220615a2f0fd3bee10006627e75691a3c5604a25
+>>>>>>> 6212f35f7770b05bace1781a96fe65ed8ed3727f
 import os
 
 # Get vehicles from csv file and return as vehicle class
@@ -39,6 +48,7 @@ if __name__ == "__main__":
     g = archive.get(q)
     print(type(g))
 
+<<<<<<< HEAD
     # Dimensions.init()
     # boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     # path = "Boards/"
@@ -99,3 +109,35 @@ if __name__ == "__main__":
     #     game = Gameboard(uploadBoard(path))
     #     print(game)
     #     depth_First_Search_without(game)
+=======
+    algorithm = input("Which algorithm would you like to use?\n 1. Random Solver\n 2. Breadth First Search\n 3. Depth First Search\n")
+    if (algorithm == "1" or algorithm.lower() == "random solver"):
+        results = randomSolver(Gameboard(uploadBoard(path)))
+        print(results["solvetime"])
+        print(results["steps"])
+    if (algorithm == "2" or algorithm.lower() == "breadth first search"):
+        results = bfs(Gameboard(uploadBoard(path)))
+        print("solved")
+        print (backtraceV2(results["path"]))
+        print(results["amount_steps"])
+        print(results["solvetime"])
+        print(results["nodes_popped"])
+    if (algorithm == "3" or algorithm.lower() == "depth first search"):
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        results = depth_First_Search(game)
+        print (backtraceV2(results["path"]))
+        print(results["amount_steps"])
+        print(results["solvetime"])
+        print(results["nodes"])
+        print(results["visited"])
+    if (algorithm == "4" or algorithm.lower() == "breath first without"):
+        game = Gameboard(uploadBoard(path))
+        results = breadth_First_Search_without(game)
+        print("Time: " + str(results["solvetime"]))
+        print("Nodes: " + str(results["nodes_popped"]))
+    if(algorithm  == "5"):
+        game = Gameboard(uploadBoard(path))
+        print(game)
+        depth_First_Search_without(game)
+>>>>>>> 6212f35f7770b05bace1781a96fe65ed8ed3727f

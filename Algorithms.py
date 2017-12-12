@@ -120,6 +120,33 @@ def breadth_First_Search_without(gameboard):
                     boardsQueue.appendleft(newgameboard)
                     archive[newgameboard] = new_board
 
+def bfs(gameboard):
+    beginposition = gameboard
+    boardQueue = queue.Queue()
+    visited = set()
+    dictionary = {}
+    number = 0
+    boardQueue.put(beginposition)
+    visited.add(beginposition)
+
+    while boardQueue.qsize() != 0:
+        newboard = boardQueue.get()
+        number += 1
+        childlist = newboard.checkformoves()
+        for child in childlist:
+            new = Gameboard(child)
+            dictionary[new] = newboard
+
+            if new.hasSolved():
+                solution = new
+                path = backtrace(dictionary, solution)
+                print ("found board")
+                return {"path": path,"solvetime": time.time() - start_time, "nodes_popped": number, "amount_steps": len(path)}
+            else:
+                boardQueue.put(new)
+                visited.add(new)
+
+
 def breadth_First_Search(gameboard):
     # get current time
     start_time = time.time()
@@ -166,14 +193,14 @@ def breadth_First_Search(gameboard):
                     boardsQueue.appendleft((newgameboard, new_boardPath))
 
 
-def backtrace(solutions, boardnumbers, beginposition, solution):
-    numberofsteps = 0
-    path = [boardnumbers[solution]]
+def backtrace(dictionary, solution):
+
+    path = [solution]
     while path[-1]  !=  0:
-        path.append(solutions[path[-1]])
-        numberofsteps += 1
+        path.append(dictionary[path[-1]])
+
     path.reverse()
-    return path, numberofsteps
+    return path
 
 def  backtraceV2(path):
     moves = []
