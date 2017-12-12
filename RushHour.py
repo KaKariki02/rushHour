@@ -6,7 +6,7 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
-from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2
+from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtraceV2, backtrace, bfs
 import os
 
 # Get vehicles from csv file and return as vehicle class
@@ -62,7 +62,8 @@ if __name__ == "__main__":
         print(results["solvetime"])
         print(results["steps"])
     if (algorithm == "2" or algorithm.lower() == "breadth first search"):
-        results = breadth_First_Search(Gameboard(uploadBoard(path)))
+        results = bfs(Gameboard(uploadBoard(path)))
+        print("solved")
         print (backtraceV2(results["path"]))
         print(results["amount_steps"])
         print(results["solvetime"])
