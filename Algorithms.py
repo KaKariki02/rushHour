@@ -1,5 +1,4 @@
 import sys
-#import numpy as np
 import csv
 import random
 import copy
@@ -187,11 +186,11 @@ def  backtraceV2(path):
         original = list(set(board1.vehicles) - set(board2.vehicles))[0]
         nieuw = list(set(board2.vehicles) - set(board1.vehicles))[0]
         if original.x < nieuw.x:
-            moves.append("{0} naar rechts".format(original.id))
+            moves.append("{0} to the right".format(original.id))
         if original.x > nieuw.x:
-            moves.append("{0} naar links".format(original.id))
+            moves.append("{0} to the left".format(original.id))
         if original.y < nieuw.y:
-            moves.append("{0} naar beneden".format(original.id))
+            moves.append("{0} down".format(original.id))
         if original.y > nieuw.y:
-            moves.append("{0} naar boven".format(original.id))
+            moves.append("{0} up".format(original.id))
     return moves

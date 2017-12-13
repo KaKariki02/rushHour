@@ -68,10 +68,9 @@ Which algorithm would you like to use?
  Time: 0.17185306549072266
 Nodes: 348
 Length solution: 17
-['A naar beneden', 'B naar beneden', 'C naar beneden', 'D naar beneden', 'A naar bened
-en', 'B naar beneden', 'C naar beneden', 'D naar beneden', 'A naar beneden', '# naar r
-echts', 'B naar beneden', 'C naar beneden', 'D naar beneden', '# naar rechts', '# naar
- rechts', '# naar rechts']
+['A down', 'B down', 'C down', 'D down', 'A down', 'B down', 'C down', 'D down', 'A do
+wn', '# to the right', 'B down', 'C down', 'D down', '# to the right', '# to the right
+', '# to the right']
  ```  
 
 ## Update RushHour 23rd of november  
