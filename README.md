@@ -35,31 +35,31 @@ $ python RushHour.py
 ```
 When you are prompted to choose the board size, enter for example '1' or '6x6':  
 
-What board size would you like to solve?
+*What board size would you like to solve?
  1. 6x6  
  2. 9x9  
- 3. 12x12  
+ 3. 12x12*  
  ```
  6x6
  ```  
 When you are prompted to choose the game, type in the filename of the game:  
 
-These 6x6 boards are available:  
+*These 6x6 boards are available:  
 GameWon.csv  
 HardestGame.csv  
 game1.csv  
 game3.csv  
 game2.csv  
-Which board would you like to solve?  
+Which board would you like to solve?*  
 ```
 game3.csv
 ```  
 When you are prompted to choose the algorithm, enter for example '2' or 'breadth first search':  
 
-Which algorithm would you like to use?
+*Which algorithm would you like to use?
  1. Random Solver
  2. Breadth First Search
- 3. Depth First Search  
+ 3. Depth First Search*  
  ```
  breadth first search
  ```  
@@ -72,6 +72,13 @@ Length solution: 17
 wn', '# to the right', 'B down', 'C down', 'D down', '# to the right', '# to the right
 ', '# to the right']
  ```  
+
+## Authors  
+
+* Roman Lakerveld  
+* Iris Schlundt Bodien  
+
+With Eloy Testerink as a contributer  
 
 ## Update RushHour 23rd of november  
 
