@@ -1,5 +1,4 @@
 import sys
-#import numpy as np
 import csv
 import random
 import copy
@@ -79,7 +78,7 @@ if __name__ == "__main__":
     if (algorithm == "4" or algorithm.lower() == "breath first without"):
         game = Gameboard(uploadBoard(path))
         results = breadth_First_Search_without(game)
-        print("Time: " + str(results["solvetime"]))
+        print("Time: " + str(results["solvetime"]) + "seconds")
         print("Nodes: " + str(results["nodes_popped"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
@@ -87,7 +86,7 @@ if __name__ == "__main__":
     if(algorithm  == "5"):
         game = Gameboard(uploadBoard(path))
         results = depth_First_Search_without(game)
-        print("Time: " + str(results["solvetime"]))
+        print("Time: " + str(results["solvetime"]) + "seconds")
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
