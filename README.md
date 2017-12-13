@@ -33,7 +33,44 @@ To use Rush Hour Solver it is necessary to have python 3 installed. You can run 
 ```
 $ python RushHour.py
 ```
-
+When you are prompted to choose the board size, enter for example '1' or '6x6':  
+What board size would you like to solve?
+ 1. 6x6  
+ 2. 9x9  
+ 3. 12x12  
+ ```
+ 6x6
+ ```  
+When you are prompted to choose the game, type in the filename of the game:  
+These 6x6 boards are available:
+GameWon.csv
+HardestGame.csv
+game1.csv
+game3.csv
+game2.csv
+Which board would you like to solve?  
+```
+game3.csv
+```  
+When you are prompted to choose the algorithm, enter for example '2' or 'breadth first search':  
+Which algorithm would you like to use?
+ 1. Random Solver
+ 2. Breadth First Search
+ 3. Depth First Search  
+ ```
+ breadth first search
+ ```  
+ This will give the following results:
+ ```
+ Time: 0.17185306549072266
+Nodes: 348
+Length solution: 17
+['A naar beneden', 'B naar beneden', 'C naar beneden', 'D naar beneden', 'A naar bened
+en', 'B naar beneden', 'C naar beneden', 'D naar beneden', 'A naar beneden', '# naar r
+echts', 'B naar beneden', 'C naar beneden', 'D naar beneden', '# naar rechts', '# naar
+ rechts', '# naar rechts']
+ ```  
+ 
 ## Update RushHour 23rd of november  
 
 We have created three files. Algorithms.py contains the algorithms, RushClass.py contains the classes and RushHour is the main file.  
