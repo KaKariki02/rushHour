@@ -1,5 +1,5 @@
 import sys
-import numpy as np
+#import numpy as np
 import csv
 import random
 import copy

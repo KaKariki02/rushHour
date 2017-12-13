@@ -25,7 +25,14 @@ Algorithms.py contains three algorithms to solve the game: a random solver, a br
 
 ## Getting Started  
 
+Roush Hour Solver let the user choose the board size and the game to solve. Then the user can decide what Algorithm will be used. When the game is solved the user can see the time it took, the number of nodes the Algorithm made, the number of steps to come to the solution and the moves that the cars have to make.  
 
+### Run the program  
+
+To use Rush Hour Solver it is necessary to have python 3 installed. You can run the program by entering python followed by the name of the RushHour document:  
+```
+$ python RushHour.py
+```
 
 ## Update RushHour 23rd of november  
 
