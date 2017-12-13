@@ -35,7 +35,7 @@ $ python RushHour.py
 ```
 When you are prompted to choose the board size, enter for example '1' or '6x6':  
 
-*What board size would you like to solve?*
+*What board size would you like to solve?*  
  *1. 6x6*  
  *2. 9x9*  
  *3. 12x12*  
@@ -56,9 +56,9 @@ game3.csv
 ```  
 When you are prompted to choose the algorithm, enter for example '2' or 'breadth first search':  
 
-*Which algorithm would you like to use?*
- *1. Random Solver*
- *2. Breadth First Search*
+*Which algorithm would you like to use?*  
+ *1. Random Solver*  
+ *2. Breadth First Search*  
  *3. Depth First Search*  
  ```
  breadth first search
