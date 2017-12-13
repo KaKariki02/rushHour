@@ -17,11 +17,13 @@ The game Rush Hour is a puzzle on a 6x6 board where you have to move the red car
 12x12: game 7  
 <img src="http://heuristieken.nl/wiki/images/2/26/Rushhour12x12_1.jpg" width="250" />
 
-RushHour.py is the main file where the user can choose the boardsize and the game and where the code is run.  
+## Files
 
-RushClass.py consist of two classes; the vehicle class gives information about the vehicles and the gameboard class fills the board, checks for possible moves and checks if the game is won.  
+RushHour.py is the running file where the user can choose the boardsize, the game and the algorithm.  
 
-Algorithms.py contains three algorithms to solve the game: a random solver, a bread first search algorithm and a depth first search algorithm.  
+RushClass.py consist of three classes; the vehicle class gives information about the vehicles, the gameboard class fills the board, checks for possible moves and checks if the game is won and the dimensions class sets the size of the board.  
+
+Algorithms.py contains three algorithms to solve the game: a random solver, a bread first search and a depth first search.  
 
 ## Getting Started  
 
