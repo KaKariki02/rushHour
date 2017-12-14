@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 import csv
 import random
 import copy
@@ -9,14 +8,14 @@ from RushClass import Gameboard, Vehicle
 from collections import deque
 
 def randomSolver(gameboard):
-
-    newgameboard = copy.copy(gameboard)
-    j=0
+    start_time = time.time()
+    newgameboard = gameboard
+    steps=0
     while True:
         newgameboard = Gameboard(random.choice(newgameboard.checkformoves()))
-        j += 1
+        steps += 1
         if newgameboard.hasSolved():
-            return True
+            return {"solvetime": time.time() - start_time, "steps": steps}
 
 
 def depth_First_Search(gameboard):
@@ -122,32 +121,6 @@ def breadth_First_Search_without(gameboard):
                     boardsQueue.appendleft(newgameboard)
                     archive[newgameboard] = new_board
 
-def bfs(gameboard):
-    beginposition = gameboard
-    boardQueue = queue.Queue()
-    visited = set()
-    dictionary = {}
-    number = 0
-    boardQueue.put(beginposition)
-    visited.add(beginposition)
-
-    while boardQueue.qsize() != 0:
-        newboard = boardQueue.get()
-        number += 1
-        childlist = newboard.checkformoves()
-        for child in childlist:
-            new = Gameboard(child)
-            dictionary[new] = newboard
-
-            if new.hasSolved():
-                solution = new
-                path = backtrace(dictionary, solution)
-                print ("found board")
-                return {"path": path,"solvetime": time.time() - start_time, "nodes_popped": number, "amount_steps": len(path)}
-            else:
-                boardQueue.put(new)
-                visited.add(new)
-
 
 def breadth_First_Search(gameboard):
     # get current time
@@ -213,13 +186,13 @@ def  backtraceV2(path):
         original = list(set(board1.vehicles) - set(board2.vehicles))[0]
         nieuw = list(set(board2.vehicles) - set(board1.vehicles))[0]
         if original.x < nieuw.x:
-            moves.append("{0} naar rechts".format(original.id))
+            moves.append("{0} to the right".format(original.id))
         if original.x > nieuw.x:
-            moves.append("{0} naar links".format(original.id))
+            moves.append("{0} to the left".format(original.id))
         if original.y < nieuw.y:
-            moves.append("{0} naar beneden".format(original.id))
+            moves.append("{0} down".format(original.id))
         if original.y > nieuw.y:
-            moves.append("{0} naar boven".format(original.id))
+            moves.append("{0} up".format(original.id))
     return moves
 
 def visualize(path):

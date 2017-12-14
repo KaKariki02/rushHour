@@ -27,7 +27,6 @@ class Dimensions():
         global height
 
 class Gameboard():
-#GRID = 6
 
     def __init__(self, vehicles):
 

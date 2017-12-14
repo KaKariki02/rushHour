@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 import csv
 import random
 import copy
@@ -64,21 +63,6 @@ if __name__ == "__main__":
         print(results["solvetime"])
         print(results["steps"])
     if (algorithm == "2" or algorithm.lower() == "breadth first search"):
-        results = breadth_First_Search(Gameboard(uploadBoard(path)))
-        print (backtraceV2(results["path"]))
-        print(results["amount_steps"])
-        print(results["solvetime"])
-        print(results["nodes_popped"])
-    if (algorithm == "3" or algorithm.lower() == "depth first search"):
-        game = Gameboard(uploadBoard(path))
-        print(game)
-        results = depth_First_Search(game)
-        print (backtraceV2(results["path"]))
-        print(results["amount_steps"])
-        print(results["solvetime"])
-        print(results["nodes"])
-        print(results["visited"])
-    if (algorithm == "4" or algorithm.lower() == "breath first without"):
         game = Gameboard(uploadBoard(path))
         results = breadth_First_Search_without(game)
         print("Time: " + str(results["solvetime"]))
@@ -87,11 +71,11 @@ if __name__ == "__main__":
         visualize(path)
         print("Length solution: " + str(len(path)))
         print(backtraceV2(path))
-    if(algorithm  == "5"):
+    if (algorithm == "3" or algorithm.lower() == "depth first search"):
         game = Gameboard(uploadBoard(path))
         results = depth_First_Search_without(game)
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
-        print(backtraceV2(path))
+        #print(backtraceV2(path))
