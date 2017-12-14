@@ -62,6 +62,7 @@ def depth_First_Search_without(gameboard):
     Stack = []
     number = 0
     archive = {}
+    archive[gameboard] = 0
     Stack.append(gameboard)
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
@@ -220,3 +221,7 @@ def  backtraceV2(path):
         if original.y > nieuw.y:
             moves.append("{0} naar boven".format(original.id))
     return moves
+
+def visualize(path):
+    for i in range(len(path)):
+        path[i].plot()

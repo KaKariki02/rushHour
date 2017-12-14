@@ -1,4 +1,6 @@
 from math import ceil
+import matplotlib.pyplot as plt
+import copy
 
 # Class Vehicle with properties for id, x-coordinate, y-coordinate, vertical or
 # horizontal orientation and the length of the vehicle
@@ -48,6 +50,19 @@ class Gameboard():
     # hash the gameboardstring
     def __hash__(self):
         return hash(self.__repr__())
+
+    def plot(self):
+        plotboard = copy.copy(self.board)
+        number = 1
+        for i in range(self.width):
+            for j in range(self.width):
+                if (plotboard[i][j] == "."):
+                    plotboard[i][j] = 0
+                else:
+                    plotboard[i][j] = ord(plotboard[i][j]) * 10
+                    number += 1
+        plt.matshow(plotboard)
+        plt.show()
 
     # represents the gameboardobject as a string
     def __repr__(self):
