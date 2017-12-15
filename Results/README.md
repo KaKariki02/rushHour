@@ -9,15 +9,17 @@ The results of the breadth first search and the depth first search show that the
 The difference between the two algorithms is more or less equal for every gameboard.
 
 We have tried to replace the red car to the bottom of the csv file. In that way the check for move function will check if the red can be moved after it has checked it for all the other cars. This will only happen the first time, when the check for move function checks for possible moves on the starting position of the game. The board where the red car is moved will get at the bottom of the stack with the depth first search algorithm and at the end of the queue with the breadth first search algorithm. Because this only applies for the first time, it doesn't result in a big difference.  
-For example:  
-Game 1, breadth first search:  
+For example: game 1  
+Breadth first search:  
 * Red car on top of the csv file:  
   83 steps to the solution
   8678 nodes 
 * Red car at the bottom of the csv file:  
   steps to the solution 
   8678 nodes    
-Game 1, depth first search:  
+
+  
+Depth first search:  
 * Red car at the top:
   1764 steps to the solution and 
   4106 nodes 
