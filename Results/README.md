@@ -1,6 +1,6 @@
 Random_dist.jpg
 <img src=https://github.com/KaKariki02/rushHour/blob/master/Results/Random_dist.jpg width="800">
-The random solver randomly moves one car and continues with that board. It repeats this process untill it finds the solution. This table 
+The random solver randomly moves one car and continues with that board. It repeats this process untill it finds the solution. This figure shows a histogram of the distribution of steps it takes to solve a board. Interestingly, most boards are solved in a short time indicating that not many steps were needed, but some runs take more than 10 times the amount of time to solve the board. 
 
 Results_table.jpg
 <img src=https://github.com/KaKariki02/rushHour/blob/master/Results/Results_table.jpg width="800">
