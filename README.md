@@ -8,7 +8,7 @@ The game Rush Hour is a puzzle on a 6x6 board where you have to move the red car
 <img src="http://heuristieken.nl/wiki/images/9/95/Rushhour6x6_1.jpg" width="150" />
 <img src="http://heuristieken.nl/wiki/images/a/aa/Rushhour6x6_2.jpg" width="150" />
 <img src="http://heuristieken.nl/wiki/images/c/c7/Rushhour6x6_3.jpg" width="150" />
-<img src="http://www.thinkfun.com/wp-content/uploads/2015/10/playonline-rh-btn.jpg" width="150" />
+<img src="http://www.thinkfun.com/wp-content/uploads/2015/10/playonline-rh-btn.jpg" width="160" />
 
 9x9: game 4, game 5, game 6  
 <img src="http://heuristieken.nl/wiki/images/9/96/Rushhour9x9_1.jpg" width="200" />
