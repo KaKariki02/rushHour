@@ -5,7 +5,8 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
-from Algorithms import breadth_First_Search, randomSolver, depth_First_Search, backtrace, backtraceV2, breadth_First_Search_without, depth_First_Search_without, visualize
+from RushHelpers import backtrace, backtraceV2, visualize
+from Algorithms import randomSolver, breadth_First_Search_without, depth_First_Search_without
 import os
 #import matplotlib.pyplot as plt
 
