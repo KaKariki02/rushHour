@@ -1,5 +1,5 @@
 from math import ceil
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import copy
 
 # Class Vehicle with properties for id, x-coordinate, y-coordinate, vertical or
@@ -60,8 +60,8 @@ class Gameboard():
                 else:
                     plotboard[i][j] = ord(plotboard[i][j]) * 10
                     number += 1
-        plt.matshow(plotboard)
-        plt.show()
+        #plt.matshow(plotboard)
+        #plt.show()
 
     # represents the gameboardobject as a string
     def __repr__(self):
