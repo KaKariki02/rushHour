@@ -20,8 +20,8 @@ Breadth first search:
   
 Depth first search:  
 * Red car at the top:  
-  1764 steps to the solution and 
+  1764 steps to the solution, 
   4106 nodes 
 * Red car at the bottom:  
-  1761 steps to the solution and 
+  1761 steps to the solution, 
   4110 nodes 
