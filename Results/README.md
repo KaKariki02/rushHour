@@ -16,7 +16,7 @@ Game 1, breadth first search:
   8678 nodes 
 * Red car at the bottom of the csv file:  
   steps to the solution 
-  8678 nodes
+  8678 nodes  
 Game 1, depth first search:  
 * Red car at the top:
   1764 steps to the solution and 
