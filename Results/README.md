@@ -12,17 +12,16 @@ We have tried to replace the red car to the bottom of the csv file. In that way 
 For example: game 1  
 Breadth first search:  
 * Red car on top of the csv file:  
-  83 steps to the solution
+  83 steps to the solution,
   8678 nodes 
 * Red car at the bottom of the csv file:  
-  steps to the solution 
-  8678 nodes    
-
+  steps to the solution, 
+  8678 nodes  
   
 Depth first search:  
-* Red car at the top:
+* Red car at the top:  
   1764 steps to the solution and 
   4106 nodes 
-* Red car at the bottom:
+* Red car at the bottom:  
   1761 steps to the solution and 
   4110 nodes 
