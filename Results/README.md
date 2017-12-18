@@ -30,7 +30,9 @@ Depth first search:
 Calculating the state-space in our case isn't very straightforward. We could define the state-space as all the possible configurations of the gameboard. Since every vehicle is restricted to moving in one axis, we can consider that a single car (length = 2) has 5 possible positions and a truck (length = 3) has 4 possible positions. If we allow vehicles to overlap, we can calculate the state-space for a board with three cars and one truck: 5 * 5 * 5 * 4 = 500 configurations, since every car has 5 possible positions and every truck has 4. A formula for calcutation the state-space would be:    <br></br>
 ![](http://latex.codecogs.com/gif.latex?5%5E%7Bnumber%20of%20cars%7D%20*%204%5E%7Bnumberoftrucks%7D%20%3D%20statespace)    <br></br>
 This formula assumes that the height and width of the board are both six. We can also write a formula in which height and width are variables (since the boards are all square and height and width are equal, we only use the width of the board):
-![](http://latex.codecogs.com/gif.latex?%28width-1%29%5E%7Bnumber%20of%20cars%7D%20*%20%28width-2%29%5E%7Bnumberoftrucks%7D%20%3D%20statespace)  
+<br></br>
+![](http://latex.codecogs.com/gif.latex?%28width-1%29%5E%7Bnumber%20of%20cars%7D%20*%20%28width-2%29%5E%7Bnumberoftrucks%7D%20%3D%20statespace)
+<br></br>
 Using this formula we can calculate the state-space for every board:
 * Game 1 = 1.000.000
 * Game 2 = 976.562.500
