@@ -5,10 +5,9 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
-from RushHelpers import backtrace, backtraceV2, visualize
+from RushHelpers import backtrace, backtraceV2
 from Algorithms import randomSolver, breadth_First_Search_without, depth_First_Search_without
 import os
-#import matplotlib.pyplot as plt
 
 # Get vehicles from csv file and return as vehicle class
 def uploadBoard(filepath):
@@ -25,8 +24,7 @@ def uploadBoard(filepath):
 
 
 if __name__ == "__main__":
-    # let user choose the boardsize, the game and the algorithm
-    # load game in gameboard class and solve with the chosen algorithm
+    # let user choose the boardsize and the game
     Dimensions.init()
     boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     path = "Boards/"
@@ -57,7 +55,7 @@ if __name__ == "__main__":
         Dimensions.height = 12
         path = path + "game7.csv"
 
-
+    # let user choose the algorithm, load game in gameboard class and print results
     algorithm = input("Which algorithm would you like to use?\n 1. Random Solver\n 2. Breadth First Search\n 3. Depth First Search\n")
     if (algorithm == "1" or algorithm.lower() == "random solver"):
         results = randomSolver(Gameboard(uploadBoard(path)))
@@ -69,7 +67,10 @@ if __name__ == "__main__":
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes_popped"]))
         path = backtrace(results["archive"], results["solution"])
+<<<<<<< HEAD
         visualize(path)
+=======
+>>>>>>> 972ca3ebcb512be6539e2a834e6dcd861fb4d2ac
         print("Length solution: " + str(len(path)))
         print(backtraceV2(path))
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
@@ -79,4 +80,4 @@ if __name__ == "__main__":
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
-        #print(backtraceV2(path))
+        print(backtraceV2(path))

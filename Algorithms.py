@@ -18,12 +18,17 @@ def randomSolver(gameboard):
             return {"solvetime": time.time() - start_time, "steps": steps}
 
 def depth_First_Search_without(gameboard):
+    # get current time
     start_time = time.time()
+    # initialize
     Stack = []
     number = 0
     archive = {}
+    # initial gameboard in archive
     archive[gameboard] = 0
+    # initial gameboard in stack
     Stack.append(gameboard)
+
     # Stack.pop() if no value give between brackets, item at end of the list is returned
     while len(Stack) != 0 :
         # pop new board and path
@@ -31,12 +36,12 @@ def depth_First_Search_without(gameboard):
 
         number += 1
 
-        # if board is solved, run backtraceV2
+        # if board is solved, return results
         if new_board.hasSolved():
             print ("found board")
             return {"solvetime": time.time() - start_time, "nodes": number, "archive": archive, "solution": new_board }
 
-        # else add all possible boards to queue, if theyre not in visited
+        # else add all possible boards to queue, if they're not in archive
         else:
             for move in new_board.checkformoves():
                 newgameboard = Gameboard(move)
@@ -49,15 +54,13 @@ def depth_First_Search_without(gameboard):
 def breadth_First_Search_without(gameboard):
     # get current time
     start_time = time.time()
-    archive = {}
     # initialize
     boardsQueue = deque()
-
     archive  = {}
     archive[gameboard] = 0
     number = 0
 
-    # put intial gameboard and empty tuple in queue
+    # put intial gameboard in queue
     boardsQueue.appendleft(gameboard)
 
     # add initial gameboard to archive
@@ -67,12 +70,12 @@ def breadth_First_Search_without(gameboard):
         new_board = boardsQueue.pop()
 
         number += 1
-        # if board is solved, run backtraceV2
+        # if board is solved, return result
         if new_board.hasSolved():
             print ("found board")
             return {"solvetime": time.time() - start_time, "nodes_popped": number, "archive": archive, "solution": new_board}
 
-        # else add all possible boards to queue, if theyre not in visited
+        # else add all possible boards to queue, if they're not in archive
         else:
             for move in new_board.checkformoves():
                 newgameboard = Gameboard(move)

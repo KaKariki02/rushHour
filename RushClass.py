@@ -49,6 +49,20 @@ class Gameboard():
     def __hash__(self):
         return hash(self.__repr__())
 
+<<<<<<< HEAD
+=======
+    def plot(self):
+        plotboard = copy.copy(self.board)
+        number = 1
+        for i in range(self.width):
+            for j in range(self.width):
+                if (plotboard[i][j] == "."):
+                    plotboard[i][j] = 0
+                else:
+                    plotboard[i][j] = ord(plotboard[i][j]) * 10
+                    number += 1
+
+>>>>>>> 972ca3ebcb512be6539e2a834e6dcd861fb4d2ac
     # represents the gameboardobject as a string
     def __repr__(self):
         self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])
@@ -58,43 +72,73 @@ class Gameboard():
     def __eq__(self, other):
         return hash(self) == hash(other)
 
-    # check if vehicle is oriented horizontal or vertical and if it's not on the edge of the board
-    # move if not blocked by another vehicle
+
     def checkformoves(self):
+        # initialize list for possible boards
         possibleBoards = []
+
         for vehicle in self.vehicles:
             x_position = int(vehicle.x)
             y_position = int(vehicle.y)
 
+            # check if vehicle is oriented horizontal and if it's not on the edge of the board
             if vehicle.orientation == 'H':
                 if x_position != 0:
+
+                    # move to the left if not blocked by another vehicle
                     if self.board[y_position][x_position - 1] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position - 1, y_position, vehicle.orientation, vehicle.length)
+
+                        # remove old vehicle and append moved vehicle to list
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
+
+                        # add new list of vehicles to list of possible boards
                         possibleBoards.append(newVehicles)
+
                 if (x_position + vehicle.length - 1) != self.width - 1:
+
+                    # move to the right if not blocked by another vehicle
                     if self.board[y_position][x_position + (vehicle.length)] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position + 1, y_position, vehicle.orientation, vehicle.length)
+
+                        # remove old vehicle and append moved vehicle to list
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
+
+                        # add new list of vehicles to list of possible boards
                         possibleBoards.append(newVehicles)
+
+            # check if vehicle is oriented vertical and if it's not on the edge of the board
             if vehicle.orientation == 'V':
                 if y_position != 0:
+
+                    # move up if not blocked by another vehicle
                     if self.board[y_position - 1][x_position] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position, y_position - 1, vehicle.orientation, vehicle.length)
+
+                        # remove old vehicle and append moved vehicle to list
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
+
+                        # add new list of vehicles to list of possible boards
                         possibleBoards.append(newVehicles)
+
                 if y_position + (vehicle.length - 1) != self.height - 1:
+
+                    # move down if not blocked by another vehicle
                     if self.board[y_position + vehicle.length][x_position] == '.':
                         newVehicles = self.vehicles.copy()
                         newVehicle = Vehicle(vehicle.id, x_position, y_position + 1, vehicle.orientation, vehicle.length)
+
+                        # remove old vehicle and append moved vehicle to list
                         newVehicles.remove(vehicle)
                         newVehicles.append(newVehicle)
+
+                        # add new list of vehicles to list of possible boards
                         possibleBoards.append(newVehicles)
 
         return possibleBoards
