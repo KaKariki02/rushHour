@@ -69,7 +69,7 @@ if __name__ == "__main__":
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes_popped"]))
         path = backtrace(results["archive"], results["solution"])
-        #visualize(path)
+        visualize(path)
         print("Length solution: " + str(len(path)))
         print(backtraceV2(path))
     if (algorithm == "3" or algorithm.lower() == "depth first search"):

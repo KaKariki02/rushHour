@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import time
+
 def backtrace(dictionary, solution):
 
     path = [solution]
@@ -27,4 +30,6 @@ def  backtraceV2(path):
 
 def visualize(path):
     for i in range(len(path)):
-        path[i].plot()
+        fig = path[i].plot()
+        time.sleep(3)
+        plt.close(fig)
