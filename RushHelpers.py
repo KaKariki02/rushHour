@@ -1,5 +1,3 @@
-import time
-
 def backtrace(dictionary, solution):
 
     # initialize list for path to the solution
@@ -24,9 +22,11 @@ def  backtraceV2(path):
         # get current and next board
         board1 = path[i]
         board2 = path[i+1]
+        
         # get original and new vehicle
         original = list(set(board1.vehicles) - set(board2.vehicles))[0]
         new = list(set(board2.vehicles) - set(board1.vehicles))[0]
+
         # check which way the vehicle was moved by comparing the x and y positions
         if original.x < new.x:
             moves.append("{0} to the right".format(original.id))

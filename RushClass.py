@@ -48,21 +48,7 @@ class Gameboard():
     # hash the gameboardstring
     def __hash__(self):
         return hash(self.__repr__())
-
-<<<<<<< HEAD
-=======
-    def plot(self):
-        plotboard = copy.copy(self.board)
-        number = 1
-        for i in range(self.width):
-            for j in range(self.width):
-                if (plotboard[i][j] == "."):
-                    plotboard[i][j] = 0
-                else:
-                    plotboard[i][j] = ord(plotboard[i][j]) * 10
-                    number += 1
-
->>>>>>> 972ca3ebcb512be6539e2a834e6dcd861fb4d2ac
+    
     # represents the gameboardobject as a string
     def __repr__(self):
         self.printableboard = '\n\n'.join(['      '.join(['{}'.format(item) for item in row]) for row in self.board])

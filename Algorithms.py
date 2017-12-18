@@ -17,7 +17,7 @@ def randomSolver(gameboard):
         if newgameboard.hasSolved():
             return {"solvetime": time.time() - start_time, "steps": steps}
 
-def depth_First_Search_without(gameboard):
+def depth_First_Search(gameboard):
     # get current time
     start_time = time.time()
     # initialize
@@ -51,7 +51,7 @@ def depth_First_Search_without(gameboard):
                     archive[newgameboard] = new_board
                     Stack.append(newgameboard)
 
-def breadth_First_Search_without(gameboard):
+def breadth_First_Search(gameboard):
     # get current time
     start_time = time.time()
     # initialize

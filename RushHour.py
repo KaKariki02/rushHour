@@ -6,7 +6,7 @@ import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
 from RushHelpers import backtrace, backtraceV2
-from Algorithms import randomSolver, breadth_First_Search_without, depth_First_Search_without
+from Algorithms import randomSolver, breadth_First_Search, depth_First_Search
 import os
 
 # Get vehicles from csv file and return as vehicle class
@@ -58,22 +58,33 @@ if __name__ == "__main__":
     # let user choose the algorithm, load game in gameboard class and print results
     algorithm = input("Which algorithm would you like to use?\n 1. Random Solver\n 2. Breadth First Search\n 3. Depth First Search\n")
     if (algorithm == "1" or algorithm.lower() == "random solver"):
+        # run a random solver
         results = randomSolver(Gameboard(uploadBoard(path)))
-        print(results["solvetime"])
-        print(results["steps"])
+
+        # print results of random solver
+        print("Time: " + str(results["solvetime"]))
+        print("Steps: " + str(results["steps"]))
     if (algorithm == "2" or algorithm.lower() == "breadth first search"):
-        game = Gameboard(uploadBoard(path))
-        results = breadth_First_Search_without(game)
+        # run a breadth first search
+        results = breadth_First_Search(Gameboard(uploadBoard(path)))
+
+        # print results of breadth first
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes_popped"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
         print(backtraceV2(path))
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
+        # run a depth first search
         game = Gameboard(uploadBoard(path))
-        results = depth_First_Search_without(game)
+        results = depth_First_Search(game)
+
+        # print results of depth first search
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
-        print(backtraceV2(path))
+        # the backtrace has been commented out because it is not of interest and generates a lot of text
+        # if for some reason you would like to print the solution, uncomment the next line:
+
+        #print(backtraceV2(path))
