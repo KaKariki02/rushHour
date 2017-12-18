@@ -42,4 +42,4 @@ Using this formula we can calculate the state-space for every board:
 * Game 6 = 1,04E23
 * Game 7 = 1,44E45
 
-Even though these are extremely high numbers, they do not have much practical significance. This is because our algoritms do not consider boards where vehicles overlap. This constriction would drastically decrease the state-space of every game. It is also possible that a board with no overlapping vehicles could still not be reached from the starting position, so this board would be a possibility in the practical state space.
+Even though these are extremely high numbers, they do not have much practical significance. This is because our algorithms do not consider boards where vehicles overlap. This constriction would drastically decrease the state-space of every game. It is also possible that a board with no overlapping vehicles could still not be reached from the starting position, so this board would be a possibility in the practical state space.
