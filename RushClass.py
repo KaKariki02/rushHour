@@ -60,8 +60,6 @@ class Gameboard():
                 else:
                     plotboard[i][j] = ord(plotboard[i][j]) * 10
                     number += 1
-        #plt.matshow(plotboard)
-        #plt.show()
 
     # represents the gameboardobject as a string
     def __repr__(self):

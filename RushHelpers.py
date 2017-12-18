@@ -24,7 +24,3 @@ def  backtraceV2(path):
         if original.y > nieuw.y:
             moves.append("{0} up".format(original.id))
     return moves
-
-def visualize(path):
-    for i in range(len(path)):
-        path[i].plot()

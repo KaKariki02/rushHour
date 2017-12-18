@@ -5,10 +5,9 @@ import copy
 import time
 import queue
 from RushClass import Gameboard, Vehicle, Dimensions
-from RushHelpers import backtrace, backtraceV2, visualize
+from RushHelpers import backtrace, backtraceV2
 from Algorithms import randomSolver, breadth_First_Search_without, depth_First_Search_without
 import os
-#import matplotlib.pyplot as plt
 
 # Get vehicles from csv file and return as vehicle class
 def uploadBoard(filepath):
@@ -69,7 +68,6 @@ if __name__ == "__main__":
         print("Time: " + str(results["solvetime"]))
         print("Nodes: " + str(results["nodes_popped"]))
         path = backtrace(results["archive"], results["solution"])
-        #visualize(path)
         print("Length solution: " + str(len(path)))
         print(backtraceV2(path))
     if (algorithm == "3" or algorithm.lower() == "depth first search"):
@@ -79,4 +77,4 @@ if __name__ == "__main__":
         print("Nodes: " + str(results["nodes"]))
         path = backtrace(results["archive"], results["solution"])
         print("Length solution: " + str(len(path)))
-        #print(backtraceV2(path))
+        print(backtraceV2(path))
