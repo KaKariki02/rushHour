@@ -15,7 +15,7 @@ Breadth first search:
   83 steps to the solution,
   8678 nodes 
 * Red car at the bottom of the csv file:  
-  steps to the solution, 
+  84 steps to the solution, 
   8678 nodes  
   
 Depth first search:  
