@@ -24,8 +24,7 @@ def uploadBoard(filepath):
 
 
 if __name__ == "__main__":
-    # let user choose the boardsize, the game and the algorithm
-    # load game in gameboard class and solve with the chosen algorithm
+    # let user choose the boardsize and the game
     Dimensions.init()
     boardsize = input("What board size would you like to solve?\n 1. 6x6\n 2. 9x9 \n 3. 12x12\n")
     path = "Boards/"
@@ -56,7 +55,7 @@ if __name__ == "__main__":
         Dimensions.height = 12
         path = path + "game7.csv"
 
-
+    # let user choose the algorithm, load game in gameboard class and print results
     algorithm = input("Which algorithm would you like to use?\n 1. Random Solver\n 2. Breadth First Search\n 3. Depth First Search\n")
     if (algorithm == "1" or algorithm.lower() == "random solver"):
         results = randomSolver(Gameboard(uploadBoard(path)))
